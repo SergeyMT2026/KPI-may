@@ -1129,7 +1129,331 @@ const AGENTS = [
 
 // ─── ДИСТРИБУЦИЯ — ТОП лучших и худших по покрытию (последний срез) ────────
 // Структура: agent_id -> [{cat, actual, target}]
+// Для команд Бобченко/Пархоменко цель = 100% (выполнение плана по SKU)
+// Для команды Бокадо цели разные по категориям (см. отдельную страницу таблицы)
 const DISTRIBUTION = {
+  // ─── ОБЩЕЕ ВЫПОЛНЕНИЕ — системный анализ по отделу ─────────────────────────
+  'total': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 220, target: 100, comment: 'Везде в плюсе (140–358%) — план занижен или ажиотаж' },
+      { cat: 'EKO Фасоль',                 actual: 219, target: 100, comment: 'Пархоменко: 200–243% — отличное покрытие' },
+      { cat: 'Доширак вермишель',          actual: 119, target: 100, comment: 'Стабильно перевыполнение у всех команд' },
+      { cat: 'IBERICA Ананасы',            actual: 109, target: 100, comment: 'Бобченко: 95–170% — хороший результат' },
+      { cat: 'EKO Грибы',                  actual: 76,  target: 100, comment: 'Пархоменко: 59–97%, потенциал есть' },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 26,  target: 100, comment: 'ПРОБЛЕМА ВЕЗДЕ: 6–43%. Системная — пересмотреть фокус' },
+      { cat: 'Доширак импорт',             actual: 19,  target: 100, comment: '0% у 5 агентов. Не работают с категорией' },
+      { cat: 'Bocado Горох',               actual: 42,  target: 100, comment: 'Бобченко/Пархоменко: 17–80%, у Бокадо 12–18%' },
+      { cat: 'Bocado Кукуруза',            actual: 47,  target: 100, comment: 'Аналогично: дистрибуция страдает' },
+      { cat: 'EKO Горох',                  actual: 50,  target: 100, comment: 'Половина агентов <50%, нужен push' },
+      { cat: 'EKO Кукуруза',               actual: 54,  target: 100, comment: '32–77%, сильный разброс по команде' },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 58,  target: 100, comment: 'Только Сазонов/Шамрин выше 80%' },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 52,  target: 100, comment: 'Самый слабый соус из всей линейки' },
+      { cat: 'Bocado Оливки/Маслины (Бокадо)', actual: 5, target: 40, comment: 'Команда Бокадо: 2–16%, целевой 40%' },
+      { cat: 'Крупиночка (Бокадо)',        actual: 13,  target: 60, comment: 'Все ниже 35%, целевой 60%' },
+    ]
+  },
+
+  // ─── Команда Бобченко ─────────────────────────────
+  'borisov': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 192, target: 100 },
+      { cat: 'IBERICA Ананасы',            actual: 143, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 116, target: 100 },
+      { cat: 'Доширак пюре',               actual: 90,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 90,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 13,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 13,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 36,  target: 100 },
+      { cat: 'Bocado Горох',               actual: 43,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 46,  target: 100 },
+      { cat: 'Bocado Оливки/Маслины',      actual: 50,  target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 55,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 59,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 60, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 61,  target: 100 },
+    ]
+  },
+  'borodina': {
+    best: [
+      { cat: 'Bocado Оливки/Маслины',      actual: 180, target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 121, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 116, target: 100 },
+      { cat: 'IBERICA Ананасы',            actual: 103, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 80, target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 0,   target: 100 },
+      { cat: 'Bocado Горох',               actual: 37,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 38,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 38,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 40,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 41,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 43,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 45,  target: 100 },
+      { cat: 'Доширак пюре',               actual: 50,  target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 55,  target: 100 },
+    ]
+  },
+  'gryn': {
+    best: [
+      { cat: 'Доширак пюре',               actual: 150, target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 142, target: 100 },
+      { cat: 'Bocado Оливки/Маслины',      actual: 130, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 119, target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 104, target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 25,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 34,  target: 100 },
+      { cat: 'Bocado Горох',               actual: 43,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 50,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 51,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 58,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 59,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 62,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 65,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 66,  target: 100 },
+    ]
+  },
+  'karcev': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 240, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 125, target: 100 },
+      { cat: 'Bocado Оливки/Маслины',      actual: 110, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 97, target: 100 },
+      { cat: 'IBERICA Ананасы',            actual: 95,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 0,   target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 28,  target: 100 },
+      { cat: 'Доширак пюре',               actual: 33,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 36,  target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 45,  target: 100 },
+      { cat: 'Bocado Горох',               actual: 48,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 50,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 53,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 54,  target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 63,  target: 100 },
+    ]
+  },
+  'konstantinova': {
+    best: [
+      { cat: 'IBERICA Ананасы',            actual: 170, target: 100 },
+      { cat: 'Доширак импорт',             actual: 150, target: 100 },
+      { cat: 'Bocado Оливки/Маслины',      actual: 80,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 80,  target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 74,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 25,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 40,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 45, target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 46,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 47,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 51,  target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 57,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 58,  target: 100 },
+      { cat: 'Доширак пюре',               actual: 60,  target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 63,  target: 100 },
+    ]
+  },
+  'popovich': {
+    best: [
+      { cat: 'Bocado Оливки/Маслины',      actual: 170, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 125, target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 123, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 105, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 95, target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 0,   target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 30,  target: 100 },
+      { cat: 'Доширак пюре',               actual: 50,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 60,  target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 70,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 71,  target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 73,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 74,  target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 77,  target: 100 },
+      { cat: 'Bocado Горох',               actual: 80,  target: 100 },
+    ]
+  },
+  'pustovoy': {
+    best: [
+      { cat: 'Bocado Оливки/Маслины',      actual: 260, target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 174, target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 148, target: 100 },
+      { cat: 'Доширак пюре',               actual: 140, target: 100 },
+      { cat: 'Bocado Ананасы',             actual: 140, target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 23,  target: 100 },
+      { cat: 'Доширак импорт',             actual: 38,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 52,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 56, target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 65,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 72,  target: 100 },
+      { cat: 'IBERICA Ананасы',            actual: 73,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 74,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 75, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 80,  target: 100 },
+    ]
+  },
+
+  // ─── Команда Пархоменко ───────────────────────────
+  'agaev': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 265, target: 100 },
+      { cat: 'EKO Фасоль',                 actual: 243, target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 98,  target: 100 },
+      { cat: 'EKO Грибы',                  actual: 97,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 91,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 17,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 46,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 47,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 52,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 58,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 63,  target: 100 },
+      { cat: 'Олейна СКЮ',                 actual: 68,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 69,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 75, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 80, target: 100 },
+    ]
+  },
+  'balinov': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 241, target: 100 },
+      { cat: 'EKO Фасоль',                 actual: 219, target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 150, target: 100 },
+      { cat: 'Олейна СКЮ',                 actual: 110, target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 107, target: 100 },
+    ],
+    worst: [
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 33,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 34,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 36,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 53,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 54,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 68,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 78, target: 100 },
+      { cat: 'EKO Грибы',                  actual: 89,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 91, target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 92,  target: 100 },
+    ]
+  },
+  'zhir': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 292, target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 200, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 122,target: 100 },
+      { cat: 'Доширак вермишель',          actual: 111, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 111, target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 6,   target: 100 },
+      { cat: 'Bocado Горох',               actual: 17,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 23,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 26,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 32,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 44, target: 100 },
+      { cat: 'Доширак импорт',             actual: 50,  target: 100 },
+      { cat: 'Доширак пюре',               actual: 53,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 60,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 64,  target: 100 },
+    ]
+  },
+  'kostryukova': {
+    best: [
+      { cat: 'Доширак вермишель',          actual: 120, target: 100 },
+      { cat: 'Олейна СКЮ',                 actual: 110, target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 95,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 83,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 63,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 0,   target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 17,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 30,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 31, target: 100 },
+      { cat: 'Bocado Горох',               actual: 36,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 40,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 43,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 48,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 48,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 48,  target: 100 },
+    ]
+  },
+  'petrov': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 200, target: 100 },
+      { cat: 'Олейна СКЮ',                 actual: 180, target: 100 },
+      { cat: 'Доширак вермишель',          actual: 120, target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 115,target: 100 },
+      { cat: 'Доширак пюре',               actual: 100, target: 100 },
+    ],
+    worst: [
+      { cat: 'Доширак импорт',             actual: 0,   target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 25,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 33,  target: 100 },
+      { cat: 'Bocado Горох',               actual: 36,  target: 100 },
+      { cat: 'Bocado Кукуруза',            actual: 36,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 42, target: 100 },
+      { cat: 'EKO Горох',                  actual: 44,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 49,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 50,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 51,  target: 100 },
+    ]
+  },
+  'sazonov': {
+    best: [
+      { cat: 'EKO Фасоль',                 actual: 212, target: 100 },
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 200, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 104, target: 100 },
+      { cat: 'Соус СЛОБОДА Грибной',       actual: 94,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 91, target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 41,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 55,  target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 58,  target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 63,  target: 100 },
+      { cat: 'EKO Грибы',                  actual: 64,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 67,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 71, target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 74,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 76,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 88,  target: 100 },
+    ]
+  },
+  'shamrin': {
+    best: [
+      { cat: 'Майонез СЛОБОДА Лимон. 400', actual: 358, target: 100 },
+      { cat: 'EKO Фасоль',                 actual: 200, target: 100 },
+      { cat: 'Соус СЛОБОДА Чесночный',     actual: 113, target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 800',  actual: 88,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Олив. 400',  actual: 87,  target: 100 },
+    ],
+    worst: [
+      { cat: 'Майонез СЛОБОДА Лимон. 800', actual: 20,  target: 100 },
+      { cat: 'EKO Горох',                  actual: 40,  target: 100 },
+      { cat: 'Соус СЛОБОДА Цезарь',        actual: 58,  target: 100 },
+      { cat: 'EKO Грибы',                  actual: 60,  target: 100 },
+      { cat: 'Соус СЛОБОДА Сырный',        actual: 69,  target: 100 },
+      { cat: 'Олейна СКЮ',                 actual: 71,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 800',actual: 77, target: 100 },
+      { cat: 'EKO Кукуруза',               actual: 77,  target: 100 },
+      { cat: 'OLIVELINE Оливки/Маслины',   actual: 80,  target: 100 },
+      { cat: 'Майонез СЛОБОДА Прованс. 400',actual: 83, target: 100 },
+    ]
+  },
+
+  // ─── Команда Дмитриева (Бокадо) ────────────────────
   'bezugliy': {
     best: [
       { cat: 'Специи Бокадо',         actual: 30, target: 25 },
@@ -1434,37 +1758,65 @@ function renderDistribution(agent) {
     return ''; // нет данных по дистрибуции — пропускаем блок
   }
 
-  function row(item, i) {
+  const WORK_WEEK = 5; // рабочих дней в неделе для расчёта
+  const isTotal = agent.id === 'total';
+
+  function row(item, i, isWorst) {
     const ratio = item.target ? (item.actual / item.target) : 0;
     const col = ratio >= 1 ? 'var(--green)' : ratio >= 0.75 ? 'var(--yellow)' : ratio >= 0.5 ? 'var(--orange)' : 'var(--red)';
-    // Bar: фактическое покрытие в % от 100 (абсолютная шкала). Цель — вертикальная отметка.
     const w = Math.min(item.actual, 100);
     const targetPos = Math.min(item.target, 100);
+
+    // План на неделю — для блока worst:
+    // Разрыв в пп / DAYS_LEFT * WORK_WEEK = сколько процентных пунктов в неделю нужно прибавлять
+    const gap = Math.max(0, item.target - item.actual);
+    const ppPerWeek = gap > 0 ? (gap / DAYS_LEFT * WORK_WEEK) : 0;
+    const weekPlanLabel = isWorst && gap > 0
+      ? `+${ppPerWeek.toFixed(1)}пп/нед`
+      : '';
+
+    const commentBlock = item.comment
+      ? `<div class="dist-comment">${item.comment}</div>`
+      : '';
+
     return `
-      <div class="dist-row" style="animation-delay:${i * 0.05}s">
+      <div class="dist-row${isWorst ? ' worst-row' : ''}" style="animation-delay:${i * 0.05}s">
         <div class="dist-cat">${item.cat}</div>
         <div class="dist-actual" style="color:${col}">${item.actual}%</div>
-        <div class="dist-target">цель ${item.target}%</div>
+        <div class="dist-target">
+          цель ${item.target}%
+          ${weekPlanLabel ? `<div class="dist-weekplan">${weekPlanLabel}</div>` : ''}
+        </div>
         <div class="dist-bar">
           <div class="dist-bar-fill" style="width:${w}%; background:${col}"></div>
           <div class="dist-bar-target-line" style="left:${targetPos}%"></div>
         </div>
+        ${commentBlock}
       </div>`;
   }
 
-  const bestRows = data.best.map(row).join('');
-  const worstRows = data.worst.map(row).join('');
+  const bestRows = data.best.map((it, i) => row(it, i, false)).join('');
+  const worstRows = data.worst.map((it, i) => row(it, i, true)).join('');
+
+  const titleText = isTotal
+    ? 'Дистрибуция отдела · системный анализ по всем командам'
+    : 'Дистрибуция · покрытие категорий (последний срез)';
+
+  const bestTitle = isTotal ? '✓ Сильные позиции отдела' : '✓ ТОП 5 — лучшее покрытие';
+  const worstTitle = isTotal
+    ? `▼ Системные проблемы (+пп/нед = темп подтяжки)`
+    : `▼ ТОП 10 — подтянуть (план на неделю)`;
 
   return `
     <div class="section">
-      <div class="section-title">Дистрибуция · покрытие категорий (последний срез)</div>
+      <div class="section-title">${titleText}</div>
       <div class="dist-grid">
         <div>
-          <div class="dist-col-title best">✓ ТОП 5 — лучшее покрытие</div>
+          <div class="dist-col-title best">${bestTitle}</div>
           ${bestRows}
         </div>
         <div>
-          <div class="dist-col-title worst">▼ ТОП 10 — подтянуть</div>
+          <div class="dist-col-title worst">${worstTitle}</div>
           ${worstRows}
         </div>
       </div>
