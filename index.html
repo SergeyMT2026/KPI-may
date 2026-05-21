@@ -143,6 +143,18 @@ body {
 .agent-item.active .ag-meta { color: #9a9690; }
 .agent-item.active .ag-pct { color: var(--bg); }
 
+/* Total department - special row */
+.agent-item.total {
+  background: var(--ink);
+  color: var(--bg);
+  border-bottom: 3px solid var(--ink);
+}
+.agent-item.total:hover { background: #2a2724; }
+.agent-item.total .ag-name { color: var(--bg); font-size: 13px; letter-spacing: 1.5px; }
+.agent-item.total .ag-meta { color: #b8b3ab; }
+.agent-item.total .ag-bar-wrap { background: #3a3431; }
+.agent-item.total.active { background: #2a2724; }
+
 .ag-row1 {
   display: flex;
   justify-content: space-between;
@@ -495,6 +507,112 @@ body {
 .bg-orange { background: var(--orange); }
 .bg-red { background: var(--red); }
 
+/* DEPARTMENT SUMMARY (top section) */
+.dept-summary {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 22px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.dept-summary-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.dept-headline {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 16px;
+  border-right: 1px solid #2a2724;
+}
+.dept-headline-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8a8580;
+  margin-bottom: 6px;
+}
+.dept-headline-val {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.dept-headline-sub {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: #b8b3ab;
+  margin-top: 6px;
+}
+.dept-kpis {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.dept-kpi {
+  background: #2a2724;
+  padding: 10px 14px;
+  border-radius: 2px;
+  position: relative;
+}
+.dept-kpi-label {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8a8580;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dept-kpi-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+.dept-kpi-pct {
+  font-family: var(--fm);
+  font-size: 18px;
+  font-weight: 700;
+}
+.dept-kpi-fact {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: #b8b3ab;
+}
+.dept-kpi-bar {
+  height: 3px;
+  background: #1a1714;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 1px;
+}
+.dept-kpi-bar-fill {
+  height: 100%;
+  transition: width 0.8s ease;
+}
+.dept-summary-toggle {
+  cursor: pointer;
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a8580;
+  user-select: none;
+  text-align: right;
+  padding-top: 8px;
+}
+.dept-summary-toggle:hover { color: var(--bg); }
+.dept-summary.collapsed .dept-kpis { display: none; }
+.dept-summary.collapsed .dept-headline { border-right: none; }
+.dept-summary.collapsed .dept-summary-row { gap: 24px; }
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -512,11 +630,11 @@ body {
   <!-- LEFT PANEL -->
   <div class="panel-left">
     <div class="panel-header">
-      <div class="panel-header-title">Агенты (21)</div>
+      <div class="panel-header-title">Отдел / менеджеры / агенты</div>
       <div class="sort-tabs">
-        <div class="sort-tab active" onclick="sortAgents('val')">Вал %</div>
-        <div class="sort-tab" onclick="sortAgents('akb')">АКБ %</div>
-        <div class="sort-tab" onclick="sortAgents('name')">Имя</div>
+        <div class="sort-tab active" onclick="sortAgents('val', this)">Вал %</div>
+        <div class="sort-tab" onclick="sortAgents('akb', this)">АКБ %</div>
+        <div class="sort-tab" onclick="sortAgents('name', this)">Имя</div>
       </div>
     </div>
     <div id="agent-list"></div>
@@ -536,6 +654,25 @@ body {
 // DATA — каждый агент + все его КПИ задачи из таблицы
 // ═══════════════════════════════════════════════════════
 const AGENTS = [
+  {
+    id: 'total',
+    name: 'ОБЩЕЕ ВЫПОЛНЕНИЕ',
+    team: 'Весь отдел · 3 команды · 21 агент',
+    akbPlan: 3363, akbFact: 2612,
+    valPlan: 66500000, valFact: 33310160, valProg: 53808720,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4',         plan: 7528,  fact: 5443, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',                plan: 370,   fact: 195,  unit: 'SKU' },
+      { name: 'РОСРЫБСНАБ АКБ',                   plan: 446,   fact: 353,  unit: 'SKU' },
+      { name: 'ЕКО+Бокадо Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1643, unit: 'SKU' },
+      { name: 'Оливлайн+Бокадо Оливки/Маслины',   plan: 993,   fact: 783,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                      plan: 1640,  fact: 1222, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                       plan: 1160,  fact: 484,  unit: 'SKU' },
+      { name: 'Олейна СКЮ',                       plan: 460,   fact: 271,  unit: 'SKU' },
+      { name: 'АКБ общий',                        plan: 3363,  fact: 2612, unit: 'SKU' },
+      { name: 'Общий вал',                        plan: 66500000, fact: 33310160, unit: '₽', isMoney: true },
+    ]
+  },
   {
     id: 'bobchenko',
     name: 'Бобченко Ю.В.',
@@ -666,6 +803,22 @@ const AGENTS = [
   },
   // ── Пархоменко команда ──
   {
+    id: 'parkhomenko',
+    name: 'Пархоменко А.В.',
+    team: 'Руководитель ДФЗ-2',
+    akbPlan: 1054, akbFact: 845,
+    valPlan: 23470000, valFact: 11463366, valProg: 18475489,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 3071, fact: 2143, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 421,  fact: 313,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 1507, fact: 942,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 849,  fact: 691,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 555,  fact: 333,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 194,  fact: 182,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 23470000, fact: 11463366, unit: '₽', isMoney: true },
+    ]
+  },
+  {
     id: 'agaev',
     name: 'Агаев Р.',
     team: 'Пархоменко А.В.',
@@ -774,6 +927,23 @@ const AGENTS = [
     ]
   },
   // ── Дмитриев Бокадо ──
+  {
+    id: 'dmitriev',
+    name: 'Дмитриев М.Н.',
+    team: 'Руководитель · Бокадо СВ',
+    akbPlan: 946, akbFact: 773,
+    valPlan: 16320000, valFact: 8828141, valProg: 14260843,
+    kpis: [
+      { name: 'Майонез Слобода',              plan: 569,  fact: 442, unit: 'SKU' },
+      { name: 'Доширак АКБ',                  plan: 920,  fact: 700, unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 395,  fact: 221, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Маслины',      plan: 94,   fact: 319, unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 415,  fact: 271, unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 1355, fact: 726, unit: 'SKU' },
+      { name: '5 Морей АКБ',                  plan: 95,   fact: 68,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 16320000, fact: 8828141, unit: '₽', isMoney: true },
+    ]
+  },
   {
     id: 'bezugliy',
     name: 'Безуглый А.А.',
@@ -918,14 +1088,54 @@ function avgKpiPct(agent) {
   return Math.round(sum / kpisNoMoney.length);
 }
 
+// ─── DEPARTMENT TOTALS (общий блок по отделу) ───────────────────────────────
+const DEPT_KPIS = [
+  { name: 'Майонез ТОП 10 + Соус 4', plan: 7528,  fact: 5443, perDay: 261 },
+  { name: '5 Морей АКБ 3 СКЮ',      plan: 370,   fact: 195,  perDay: 22 },
+  { name: 'РОСРЫБСНАБ АКБ',          plan: 446,   fact: 353,  perDay: 12 },
+  { name: 'ЕКО+Бокадо Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1643, perDay: 110 },
+  { name: 'Оливлайн+Бокадо Оливки',  plan: 993,   fact: 783,  perDay: 26 },
+  { name: 'Доширак АКБ',             plan: 1640,  fact: 1222, perDay: 52 },
+  { name: 'Кетчуп АКБ',              plan: 1160,  fact: 484,  perDay: 85 },
+  { name: 'Олейна СКЮ',              plan: 460,   fact: 271,  perDay: 24 },
+  { name: 'АКБ общий',               plan: 3363,  fact: 2612, perDay: 94 },
+];
+
+function renderDept() {
+  const wrap = document.getElementById('dept-kpis');
+  wrap.innerHTML = '';
+  DEPT_KPIS.forEach(k => {
+    const p = pct(k.fact, k.plan);
+    const col = colorByPct(p);
+    wrap.innerHTML += `
+      <div class="dept-kpi">
+        <div class="dept-kpi-label">${k.name}</div>
+        <div class="dept-kpi-row">
+          <div class="dept-kpi-pct" style="color:${col.css}">${p}%</div>
+          <div class="dept-kpi-fact">${k.fact}/${k.plan}<br>${k.perDay}/д</div>
+        </div>
+        <div class="dept-kpi-bar">
+          <div class="dept-kpi-bar-fill" style="width:${Math.min(p,100)}%; background:${col.css}"></div>
+        </div>
+      </div>`;
+  });
+}
+
+function toggleDept() {
+  const el = document.getElementById('dept-summary');
+  el.classList.toggle('collapsed');
+  const tog = el.querySelector('.dept-summary-toggle');
+  tog.textContent = el.classList.contains('collapsed') ? '▸ развернуть КПИ отдела' : '▾ свернуть отдел';
+}
+
 // ─── SORT ───────────────────────────────────────────────────────────────────
 let currentSort = 'val';
 let currentAgent = null;
 
-function sortAgents(by) {
+function sortAgents(by, btnEl) {
   currentSort = by;
   document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btnEl) btnEl.classList.add('active');
   renderList();
 }
 
@@ -940,7 +1150,10 @@ function renderList() {
   const list = document.getElementById('agent-list');
   list.innerHTML = '';
 
-  let sorted = [...AGENTS];
+  // Отделяем "Общее выполнение" от остальных — оно всегда сверху
+  const total = AGENTS.find(a => a.id === 'total');
+  let sorted = AGENTS.filter(a => a.id !== 'total');
+
   if (currentSort === 'val') {
     sorted.sort((a,b) => pct(b.valFact, b.valPlan) - pct(a.valFact, a.valPlan));
   } else if (currentSort === 'akb') {
@@ -949,21 +1162,10 @@ function renderList() {
     sorted.sort((a,b) => a.name.localeCompare(b.name));
   }
 
-  // Group by team if not sorted by name
-  if (currentSort !== 'name') {
-    const teams = [
-      { label: '▸ КОМАНДА БОБЧЕНКО', agents: sorted.filter(a => a.team.includes('ДФЗ') || (a.team.includes('Бобченко') && !a.team.includes('Дмитриев'))) },
-      { label: '▸ КОМАНДА ПАРХОМЕНКО', agents: sorted.filter(a => a.team.includes('Пархоменко')) },
-      { label: '▸ КОМАНДА ДМИТРИЕВА · БОКАДО', agents: sorted.filter(a => a.team.includes('Дмитриев')) },
-    ];
-    teams.forEach(team => {
-      if (!team.agents.length) return;
-      list.innerHTML += `<div class="team-sep">${team.label}</div>`;
-      team.agents.forEach(a => renderAgentItem(list, a));
-    });
-  } else {
-    sorted.forEach(a => renderAgentItem(list, a));
-  }
+  // Общее выполнение всегда первым
+  if (total) sorted.unshift(total);
+
+  sorted.forEach(a => renderAgentItem(list, a));
 }
 
 function renderAgentItem(container, agent) {
@@ -971,9 +1173,10 @@ function renderAgentItem(container, agent) {
   const ap = pct(agent.akbFact, agent.akbPlan);
   const col = colorByPct(vp);
   const isActive = currentAgent && currentAgent.id === agent.id;
+  const isTotal = agent.id === 'total';
 
   const div = document.createElement('div');
-  div.className = `agent-item${isActive ? ' active' : ''}`;
+  div.className = `agent-item${isActive ? ' active' : ''}${isTotal ? ' total' : ''}`;
   div.dataset.id = agent.id;
   div.innerHTML = `
     <div class="ag-row1">
