@@ -190,6 +190,12 @@ body {
   font-size: 10px;
   color: var(--ink3);
 }
+.ag-forecast {
+  margin-top: 4px;
+  font-size: 9px;
+  opacity: 0.85;
+}
+.ag-forecast b { font-weight: 700; }
 
 /* Team separator */
 .team-sep {
@@ -613,6 +619,83 @@ body {
 .dept-summary.collapsed .dept-headline { border-right: none; }
 .dept-summary.collapsed .dept-summary-row { gap: 24px; }
 
+/* DISTRIBUTION section */
+.dist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 4px;
+}
+.dist-col-title {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dist-col-title.best { background: rgba(26,122,60,0.1); color: var(--green); }
+.dist-col-title.worst { background: rgba(192,57,43,0.1); color: var(--red); }
+.dist-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 90px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.3s ease both;
+}
+.dist-cat {
+  font-size: 12px;
+  font-weight: 600;
+}
+.dist-actual {
+  font-family: var(--fm);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+.dist-target {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--ink3);
+  text-align: right;
+}
+.dist-bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: visible;
+  position: relative;
+  margin-top: -2px;
+}
+.dist-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 0.7s ease;
+}
+.dist-bar-target-line {
+  position: absolute;
+  top: -2px;
+  width: 1px;
+  height: 7px;
+  background: var(--ink);
+  opacity: 0.4;
+}
+.dist-empty {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+  padding: 14px;
+  text-align: center;
+  background: #f5f2ed;
+  border-radius: 2px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -661,16 +744,20 @@ const AGENTS = [
     akbPlan: 3363, akbFact: 2612,
     valPlan: 66500000, valFact: 33310160, valProg: 53808720,
     kpis: [
-      { name: 'Майонез ТОП 10 + Соус 4',         plan: 7528,  fact: 5443, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ',                plan: 370,   fact: 195,  unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ',                   plan: 446,   fact: 353,  unit: 'SKU' },
-      { name: 'ЕКО+Бокадо Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1643, unit: 'SKU' },
-      { name: 'Оливлайн+Бокадо Оливки/Маслины',   plan: 993,   fact: 783,  unit: 'SKU' },
-      { name: 'Доширак АКБ',                      plan: 1640,  fact: 1222, unit: 'SKU' },
-      { name: 'Кетчуп АКБ',                       plan: 1160,  fact: 484,  unit: 'SKU' },
-      { name: 'Олейна СКЮ',                       plan: 460,   fact: 271,  unit: 'SKU' },
-      { name: 'АКБ общий',                        plan: 3363,  fact: 2612, unit: 'SKU' },
-      { name: 'Общий вал',                        plan: 66500000, fact: 33310160, unit: '₽', isMoney: true },
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ',       plan: 7528,  fact: 5443, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',                  plan: 370,   fact: 195,  unit: 'SKU' },
+      { name: 'РОСРЫБСНАБ АКБ',                     plan: 446,   fact: 353,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1643, unit: 'SKU' },
+      { name: 'ЕКО АКБ Горох/Куку/Грибы/Фасоль',    plan: 940,   fact: 910,  unit: 'SKU' },
+      { name: 'Бокадо Горох/Куку/Фасоль/Грибы',     plan: 1155,  fact: 568,  unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки/Маслины/Ананасы', plan: 993, fact: 783, unit: 'SKU' },
+      { name: 'Оливлайн Оливки/Маслины/Масло/Ананасы', plan: 588, fact: 711, unit: 'SKU' },
+      { name: 'Бокадо Оливки/Маслины/Ананасы',      plan: 545,   fact: 388,  unit: 'SKU' },
+      { name: 'Доширак Вермишель/Пюре/Пальдо АКБ',  plan: 1640,  fact: 1222, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                         plan: 1160,  fact: 484,  unit: 'SKU' },
+      { name: 'Олейна СКЮ Суммарно',                plan: 460,   fact: 271,  unit: 'SKU' },
+      { name: 'АКБ общий',                          plan: 3363,  fact: 2612, unit: 'SKU' },
+      { name: 'Общий вал',                          plan: 66500000, fact: 33310160, unit: '₽', isMoney: true },
     ]
   },
   {
@@ -1040,6 +1127,137 @@ const AGENTS = [
   },
 ];
 
+// ─── ДИСТРИБУЦИЯ — ТОП лучших и худших по покрытию (последний срез) ────────
+// Структура: agent_id -> [{cat, actual, target}]
+const DISTRIBUTION = {
+  'bezugliy': {
+    best: [
+      { cat: 'Специи Бокадо',         actual: 30, target: 25 },
+      { cat: 'Масло оливк. Бокадо',   actual: 47, target: 40 },
+      { cat: 'Bocado (общий)',        actual: 56, target: 90 },
+      { cat: 'СТ (рыба)',             actual: 28, target: 60 },
+      { cat: 'Том. паста Бокадо',     actual: 17, target: 40 },
+    ],
+    worst: [
+      { cat: 'Крупиночка',            actual: 5,  target: 60 },
+      { cat: 'Доширак',               actual: 31, target: 80 },
+      { cat: 'Мука Бокадо',           actual: 4,  target: 50 },
+      { cat: 'Крупа фас. Бокадо',     actual: 14, target: 55 },
+      { cat: 'Олейна',                actual: 10, target: 50 },
+      { cat: 'Горох Бокадо',          actual: 12, target: 50 },
+      { cat: 'Бондюэль',              actual: 22, target: 60 },
+      { cat: 'Маслины Бокадо',        actual: 5,  target: 40 },
+      { cat: 'Bocado (общий)',        actual: 56, target: 90 },
+      { cat: 'Кукуруза Бокадо',       actual: 16, target: 50 },
+    ]
+  },
+  'dubina': {
+    best: [
+      { cat: 'Специи Бокадо',         actual: 30, target: 25 },
+      { cat: 'Bocado (общий)',        actual: 50, target: 90 },
+      { cat: 'Доширак',               actual: 44, target: 80 },
+      { cat: 'Грибы Бокадо',          actual: 20, target: 40 },
+      { cat: 'Фасоль Бокадо',         actual: 17, target: 40 },
+    ],
+    worst: [
+      { cat: 'Крупиночка',            actual: 8,  target: 60 },
+      { cat: 'Мука Бокадо',           actual: 3,  target: 50 },
+      { cat: 'Бондюэль',              actual: 15, target: 60 },
+      { cat: 'Крупа фас. Бокадо',     actual: 12, target: 55 },
+      { cat: 'СТ (рыба)',             actual: 17, target: 60 },
+      { cat: 'Bocado (общий)',        actual: 50, target: 90 },
+      { cat: 'Кукуруза Бокадо',       actual: 10, target: 50 },
+      { cat: 'Горох Бокадо',          actual: 12, target: 50 },
+      { cat: 'Масло РАФ Бокадо',      actual: 2,  target: 40 },
+      { cat: 'Масло оливк. Бокадо',   actual: 3,  target: 40 },
+    ]
+  },
+  'librikht': {
+    best: [
+      { cat: 'Специи Бокадо',         actual: 23, target: 25 },
+      { cat: 'Bocado (общий)',        actual: 61, target: 90 },
+      { cat: 'Грибы Бокадо',          actual: 25, target: 40 },
+      { cat: 'Доширак',               actual: 49, target: 80 },
+      { cat: 'Крупиночка',            actual: 34, target: 60 },
+    ],
+    worst: [
+      { cat: 'Бондюэль',              actual: 11, target: 60 },
+      { cat: 'Мука Бокадо',           actual: 7,  target: 50 },
+      { cat: 'СТ (рыба)',             actual: 21, target: 60 },
+      { cat: 'Олейна',                actual: 14, target: 50 },
+      { cat: 'Масло оливк. Бокадо',   actual: 5,  target: 40 },
+      { cat: 'Икра кабачковая',       actual: 7,  target: 40 },
+      { cat: 'Крупа фас. Бокадо',     actual: 22, target: 55 },
+      { cat: 'СТ (мясо)',             actual: 7,  target: 40 },
+      { cat: 'Доширак',               actual: 49, target: 80 },
+      { cat: 'Bocado (общий)',        actual: 61, target: 90 },
+    ]
+  },
+  'reshetnyak': {
+    best: [
+      { cat: 'Доширак',               actual: 42, target: 80 },
+      { cat: 'СТ (рыба)',             actual: 29, target: 60 },
+      { cat: 'Bocado (общий)',        actual: 40, target: 90 },
+      { cat: 'Горох Бокадо',          actual: 18, target: 50 },
+      { cat: 'Специи Бокадо',         actual: 9,  target: 25 },
+    ],
+    worst: [
+      { cat: 'Крупиночка',            actual: 6,  target: 60 },
+      { cat: 'Bocado (общий)',        actual: 40, target: 90 },
+      { cat: 'Крупа фас. Бокадо',     actual: 8,  target: 55 },
+      { cat: 'Мука Бокадо',           actual: 3,  target: 50 },
+      { cat: 'Бондюэль',              actual: 13, target: 60 },
+      { cat: 'Олейна',                actual: 11, target: 50 },
+      { cat: 'Икра кабачковая',       actual: 2,  target: 40 },
+      { cat: 'Маслины Бокадо',        actual: 2,  target: 40 },
+      { cat: 'Масло РАФ Бокадо',      actual: 2,  target: 40 },
+      { cat: 'Оливки Бокадо',         actual: 2,  target: 40 },
+    ]
+  },
+  'savich': {
+    best: [
+      { cat: 'Специи Бокадо',         actual: 17, target: 25 },
+      { cat: 'Фасоль Бокадо',         actual: 27, target: 40 },
+      { cat: 'Bocado (общий)',        actual: 57, target: 90 },
+      { cat: 'СТ (рыба)',             actual: 35, target: 60 },
+      { cat: 'Кукуруза Бокадо',       actual: 27, target: 50 },
+    ],
+    worst: [
+      { cat: 'Мука Бокадо',           actual: 1,  target: 50 },
+      { cat: 'Крупа фас. Бокадо',     actual: 13, target: 55 },
+      { cat: 'Доширак',               actual: 39, target: 80 },
+      { cat: 'Крупиночка',            actual: 19, target: 60 },
+      { cat: 'Бондюэль',              actual: 22, target: 60 },
+      { cat: 'Масло оливк. Бокадо',   actual: 2,  target: 40 },
+      { cat: 'Масло РАФ Бокадо',      actual: 4,  target: 40 },
+      { cat: 'Bocado (общий)',        actual: 57, target: 90 },
+      { cat: 'Олейна',                actual: 17, target: 50 },
+      { cat: 'Том. паста Бокадо',     actual: 10, target: 40 },
+    ]
+  },
+  'saprunov': {
+    best: [
+      { cat: 'Специи Бокадо',         actual: 15, target: 25 },
+      { cat: 'Доширак',               actual: 44, target: 80 },
+      { cat: 'Bocado (общий)',        actual: 49, target: 90 },
+      { cat: 'СТ (рыба)',             actual: 32, target: 60 },
+      { cat: 'Грибы Бокадо',          actual: 20, target: 40 },
+    ],
+    worst: [
+      { cat: 'Крупиночка',            actual: 7,  target: 60 },
+      { cat: 'Мука Бокадо',           actual: 3,  target: 50 },
+      { cat: 'Бондюэль',              actual: 13, target: 60 },
+      { cat: 'Bocado (общий)',        actual: 49, target: 90 },
+      { cat: 'Крупа фас. Бокадо',     actual: 14, target: 55 },
+      { cat: 'Олейна',                actual: 9,  target: 50 },
+      { cat: 'Доширак',               actual: 44, target: 80 },
+      { cat: 'Масло РАФ Бокадо',      actual: 5,  target: 40 },
+      { cat: 'Маслины Бокадо',        actual: 6,  target: 40 },
+      { cat: 'Кукуруза Бокадо',       actual: 17, target: 50 },
+    ]
+  },
+};
+
 // ─── КОНСТАНТЫ ПЕРИОДА ──────────────────────────────────────────────────────
 const TOTAL_DAYS = 21;
 const DAYS_LEFT = 8;
@@ -1178,6 +1396,10 @@ function renderAgentItem(container, agent) {
   const div = document.createElement('div');
   div.className = `agent-item${isActive ? ' active' : ''}${isTotal ? ' total' : ''}`;
   div.dataset.id = agent.id;
+  // Расчёт прогноза в %
+  const progPct = agent.valProg ? Math.round(agent.valProg / agent.valPlan * 100) : 0;
+  const progCol = colorByPct(progPct);
+
   div.innerHTML = `
     <div class="ag-row1">
       <div class="ag-name">${agent.name}</div>
@@ -1189,6 +1411,10 @@ function renderAgentItem(container, agent) {
     <div class="ag-meta">
       <span>АКБ: ${agent.akbFact}/${agent.akbPlan} (${ap}%)</span>
       <span>${fmtM(agent.valFact)} / ${fmtM(agent.valPlan)}</span>
+    </div>
+    <div class="ag-meta ag-forecast">
+      <span>Прогноз: <b style="color:${isTotal || isActive ? '#fff' : progCol.css}">${progPct}%</b></span>
+      <span>≈ ${fmtM(agent.valProg)}</span>
     </div>`;
   div.onclick = () => selectAgent(agent.id);
   container.appendChild(div);
@@ -1202,6 +1428,49 @@ function selectAgent(id) {
 }
 
 // ─── RENDER DETAIL ──────────────────────────────────────────────────────────
+function renderDistribution(agent) {
+  const data = DISTRIBUTION[agent.id];
+  if (!data) {
+    return ''; // нет данных по дистрибуции — пропускаем блок
+  }
+
+  function row(item, i) {
+    const ratio = item.target ? (item.actual / item.target) : 0;
+    const col = ratio >= 1 ? 'var(--green)' : ratio >= 0.75 ? 'var(--yellow)' : ratio >= 0.5 ? 'var(--orange)' : 'var(--red)';
+    // Bar: фактическое покрытие в % от 100 (абсолютная шкала). Цель — вертикальная отметка.
+    const w = Math.min(item.actual, 100);
+    const targetPos = Math.min(item.target, 100);
+    return `
+      <div class="dist-row" style="animation-delay:${i * 0.05}s">
+        <div class="dist-cat">${item.cat}</div>
+        <div class="dist-actual" style="color:${col}">${item.actual}%</div>
+        <div class="dist-target">цель ${item.target}%</div>
+        <div class="dist-bar">
+          <div class="dist-bar-fill" style="width:${w}%; background:${col}"></div>
+          <div class="dist-bar-target-line" style="left:${targetPos}%"></div>
+        </div>
+      </div>`;
+  }
+
+  const bestRows = data.best.map(row).join('');
+  const worstRows = data.worst.map(row).join('');
+
+  return `
+    <div class="section">
+      <div class="section-title">Дистрибуция · покрытие категорий (последний срез)</div>
+      <div class="dist-grid">
+        <div>
+          <div class="dist-col-title best">✓ ТОП 5 — лучшее покрытие</div>
+          ${bestRows}
+        </div>
+        <div>
+          <div class="dist-col-title worst">▼ ТОП 10 — подтянуть</div>
+          ${worstRows}
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderDetail(agent) {
   const panel = document.getElementById('detail-panel');
   const vp = pct(agent.valFact, agent.valPlan);
@@ -1299,6 +1568,8 @@ function renderDetail(agent) {
       </div>
       ${kpiRowsHtml}
     </div>
+
+    ${renderDistribution(agent)}
 
     <div class="section">
       <div class="section-title">Выполнение вала · детально</div>
