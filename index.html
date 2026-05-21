@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КПИ Агенты · Май 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f2ed;
+  --ink: #1a1714;
+  --ink2: #4a4540;
+  --ink3: #9a948e;
+  --surface: #ffffff;
+  --border: #e0dbd4;
+  --border2: #ccc6be;
+  --red: #c0392b;
+  --orange: #d35400;
+  --yellow: #c8960c;
+  --green: #1a7a3c;
+  --accent: #1a1714;
+  --ff: 'Syne', sans-serif;
+  --fm: 'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ff);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.top-bar {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-bar-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: var(--fm);
+}
+.top-bar-meta {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: #9a9690;
+  letter-spacing: 1px;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding: 12px 32px;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.breadcrumb span { cursor: pointer; }
+.breadcrumb span:hover { color: var(--ink); text-decoration: underline; }
+.breadcrumb .sep { color: var(--border2); }
+
+/* LAYOUT */
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  min-height: calc(100vh - 60px);
+}
+
+/* LEFT PANEL — agent list */
+.panel-left {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+  position: sticky;
+  top: 0;
+}
+
+.panel-header {
+  padding: 20px 24px 14px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 10;
+}
+.panel-header-title {
+  font-size: 11px;
+  font-family: var(--fm);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 12px;
+}
+
+/* Sort tabs */
+.sort-tabs {
+  display: flex;
+  gap: 4px;
+  font-family: var(--fm);
+  font-size: 10px;
+}
+.sort-tab {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--ink3);
+  transition: all 0.15s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.sort-tab.active, .sort-tab:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* Agent card in list */
+.agent-item {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.agent-item:hover { background: #f0ece6; }
+.agent-item.active {
+  background: var(--ink);
+  color: var(--bg);
+}
+.agent-item.active .ag-name { color: var(--bg); }
+.agent-item.active .ag-meta { color: #9a9690; }
+.agent-item.active .ag-pct { color: var(--bg); }
+
+.ag-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.ag-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+.ag-pct {
+  font-family: var(--fm);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ag-bar-wrap {
+  height: 3px;
+  background: var(--border);
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+.ag-bar-fill {
+  height: 100%;
+  transition: width 0.6s ease;
+}
+
+.ag-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--ink3);
+}
+
+/* Team separator */
+.team-sep {
+  padding: 8px 24px 4px;
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+/* RIGHT PANEL — detail */
+.panel-right {
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+  color: var(--ink3);
+  font-family: var(--fm);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  gap: 12px;
+}
+.empty-arrow {
+  font-size: 32px;
+  color: var(--border2);
+}
+
+/* Detail header */
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--ink);
+}
+.detail-name {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.detail-team {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 2px;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+.detail-score {
+  text-align: right;
+}
+.detail-score-val {
+  font-family: var(--fm);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+}
+.detail-score-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Forecast banner */
+.forecast-banner {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.fc-card {
+  flex: 1;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.fc-card-label {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: var(--ink3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.fc-card-val {
+  font-family: var(--fm);
+  font-size: 18px;
+  font-weight: 700;
+}
+.fc-card-sub {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 28px;
+}
+.section-title {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* KPI row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 64px 80px 80px 90px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.3s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.kpi-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.kpi-bar-track {
+  height: 8px;
+  background: var(--border);
+  position: relative;
+  overflow: visible;
+}
+.kpi-bar-fill {
+  height: 100%;
+  transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+.kpi-bar-target {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 16px;
+  background: var(--ink3);
+  opacity: 0.4;
+}
+.kpi-pct {
+  font-family: var(--fm);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+.kpi-fact {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+  text-align: right;
+}
+.kpi-plan {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+  text-align: right;
+}
+.kpi-perday {
+  font-family: var(--fm);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  padding: 4px 8px;
+  background: #fff4d6;
+  border: 1px solid #e8d49a;
+  border-radius: 2px;
+  color: #8a6d10;
+}
+.kpi-perday.done {
+  background: #e8f5e8;
+  border-color: #b5d8b5;
+  color: var(--green);
+}
+.kpi-perday.hot {
+  background: #fde4e0;
+  border-color: #e8b5ad;
+  color: var(--red);
+}
+
+/* Status dot */
+.dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Radar / spider placeholder — using CSS bars in circle layout */
+.spider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 0;
+}
+.spider-canvas {
+  flex-shrink: 0;
+}
+
+/* Mini KPI grid */
+.mini-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.mini-kpi {
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+.mini-kpi::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  width: 100%;
+}
+.mini-kpi.good::after { background: var(--green); }
+.mini-kpi.warn::after { background: var(--yellow); }
+.mini-kpi.bad::after  { background: var(--red); }
+.mini-kpi-label {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: var(--ink3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.mini-kpi-val {
+  font-family: var(--fm);
+  font-size: 22px;
+  font-weight: 700;
+}
+.mini-kpi-sub {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+/* Gauge bar */
+.gauge-row {
+  margin-bottom: 14px;
+  animation: fadeUp 0.4s ease both;
+}
+.gauge-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.gauge-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.gauge-nums {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--ink3);
+}
+.gauge-track {
+  height: 12px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.gauge-fill {
+  height: 100%;
+  transition: width 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.gauge-pct-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  margin-top: 2px;
+  text-align: right;
+}
+
+/* Colors util */
+.c-green { color: var(--green); }
+.c-yellow { color: var(--yellow); }
+.c-orange { color: var(--orange); }
+.c-red { color: var(--red); }
+.bg-green { background: var(--green); }
+.bg-yellow { background: var(--yellow); }
+.bg-orange { background: var(--orange); }
+.bg-red { background: var(--red); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-title">КПИ · Торговые агенты · Май 2026</div>
+  <div class="top-bar-meta">20.05.2026 · 13 из 21 рабочих дней · 62% периода</div>
+</div>
+
+<div class="layout">
+  <!-- LEFT PANEL -->
+  <div class="panel-left">
+    <div class="panel-header">
+      <div class="panel-header-title">Агенты (21)</div>
+      <div class="sort-tabs">
+        <div class="sort-tab active" onclick="sortAgents('val')">Вал %</div>
+        <div class="sort-tab" onclick="sortAgents('akb')">АКБ %</div>
+        <div class="sort-tab" onclick="sortAgents('name')">Имя</div>
+      </div>
+    </div>
+    <div id="agent-list"></div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right" id="detail-panel">
+    <div class="empty-state">
+      <div class="empty-arrow">←</div>
+      <div>Выберите агента для детализации</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA — каждый агент + все его КПИ задачи из таблицы
+// ═══════════════════════════════════════════════════════
+const AGENTS = [
+  {
+    id: 'bobchenko',
+    name: 'Бобченко Ю.В.',
+    team: 'ДФЗ-1 · Иванченко С.А.',
+    akbPlan: 1132, akbFact: 942,
+    valPlan: 26710000, valFact: 13018653, valProg: 21030132,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 3588, fact: 2628, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 155,  fact: 94,   unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 1597, fact: 1058, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 993,  fact: 783,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 520,  fact: 333,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 371,  fact: 340,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 26710000, fact: 13018653, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'borisov',
+    name: 'Борисов И.В.',
+    team: 'ДФЗ-3-02 · Бобченко',
+    akbPlan: 156, akbFact: 151,
+    valPlan: 4010091, valFact: 2078409, valProg: 3357429,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 600,  fact: 409, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 25,   fact: 12,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 250,  fact: 178, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 145,  fact: 131, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 90,   fact: 56,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 50,   fact: 47,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 4010091, fact: 2078409, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'borodina',
+    name: 'Бородина Д.В.',
+    team: 'ДФЗ-3-04 · Бобченко',
+    akbPlan: 179, akbFact: 143,
+    valPlan: 5137525, valFact: 2538657, valProg: 4100907,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 666,  fact: 457, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 25,   fact: 11,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 260,  fact: 150, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 145,  fact: 105, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 75,   fact: 47,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 50,   fact: 42,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 5137525, fact: 2538657, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'gryn',
+    name: 'Грынь О.С.',
+    team: 'ДФЗ-2-07 · Бобченко',
+    akbPlan: 142, akbFact: 138,
+    valPlan: 4107843, valFact: 2117111, valProg: 3419948,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 667,  fact: 503, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 25,   fact: 16,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 255,  fact: 173, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 175,  fact: 129, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 100,  fact: 66,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 50,   fact: 55,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 4107843, fact: 2117111, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'karcev',
+    name: 'Карцев Н.М.',
+    team: 'ДФЗ-1-05 · Бобченко',
+    akbPlan: 158, akbFact: 157,
+    valPlan: 2834926, valFact: 1463272, valProg: 2363747,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 421,  fact: 338, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 20,   fact: 11,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 207,  fact: 123, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 135,  fact: 84,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 70,   fact: 42,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 55,   fact: 45,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 2834926, fact: 1463272, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'konstantinova',
+    name: 'Константинова Ю.В.',
+    team: 'ДФЗ-1-02 · Бобченко',
+    akbPlan: 158, akbFact: 103,
+    valPlan: 3640437, valFact: 1413328, valProg: 2283069,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 404,  fact: 235, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 20,   fact: 14,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 230,  fact: 133, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 135,  fact: 112, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 70,   fact: 39,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 66,   fact: 50,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 3640437, fact: 1413328, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'popovich',
+    name: 'Попович А.Р.',
+    team: 'ДФЗ-1-03 · Бобченко',
+    akbPlan: 138, akbFact: 128,
+    valPlan: 2688031, valFact: 1653662, valProg: 2671301,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 410,  fact: 345, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 20,   fact: 13,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 160,  fact: 111, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 108,  fact: 91,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 45,   fact: 31,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 50,   fact: 45,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 2688031, fact: 1653662, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'pustovoy',
+    name: 'Пустовой А.А.',
+    team: 'ДФЗ-1-07 · Бобченко',
+    akbPlan: 149, akbFact: 129,
+    valPlan: 4291147, valFact: 1754214, valProg: 2833731,
+    kpis: [
+      { name: 'Майонез ТОП 6 + Соус 4 СКЮ', plan: 420,  fact: 346, unit: 'SKU' },
+      { name: '5 Морей АКБ 3 СКЮ',           plan: 20,   fact: 17,  unit: 'SKU' },
+      { name: 'ЕКО + Бокадо: Консервы',       plan: 235,  fact: 190, unit: 'SKU' },
+      { name: 'Оливлайн + Бокадо: Оливки',   plan: 150,  fact: 131, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 70,   fact: 52,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 50,   fact: 56,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 4291147, fact: 1754214, unit: '₽', isMoney: true },
+    ]
+  },
+  // ── Пархоменко команда ──
+  {
+    id: 'agaev',
+    name: 'Агаев Р.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 161, akbFact: 130,
+    valPlan: 4988645, valFact: 2066526, valProg: 3338234,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 650,  fact: 469, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 75,   fact: 60,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 250,  fact: 160, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 144,  fact: 107, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 95,   fact: 72,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 4988645, fact: 2066526, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'balinov',
+    name: 'Балинов М.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 177, akbFact: 143,
+    valPlan: 2764227, valFact: 1548305, valProg: 2501108,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 550,  fact: 461, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 75,   fact: 72,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 267,  fact: 187, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 135,  fact: 149, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 95,   fact: 81,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 2764227, fact: 1548305, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'zhir',
+    name: 'Жир Е.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 140, akbFact: 123,
+    valPlan: 2996443, valFact: 1624720, valProg: 2624548,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 450,  fact: 257, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 48,   fact: 34,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 185,  fact: 83,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 135,  fact: 96,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 65,   fact: 35,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 78,   fact: 51,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 2996443, fact: 1624720, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'kostryukova',
+    name: 'Кострюкова Ю.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 175, akbFact: 113,
+    valPlan: 3260602, valFact: 1489071, valProg: 2405422,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 267,  fact: 188, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 55,   fact: 35,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 190,  fact: 117, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 100,  fact: 64,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 55,   fact: 17,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 58,   fact: 51,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 3260602, fact: 1489071, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'petrov',
+    name: 'Петров Д.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 132, akbFact: 119,
+    valPlan: 3614889, valFact: 1678530, valProg: 2711471,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 374,  fact: 221, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 45,   fact: 40,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 192,  fact: 108, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 100,  fact: 70,  unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 80,   fact: 30,  unit: 'SKU' },
+      { name: 'Доширак АКБ',                 plan: 58,   fact: 80,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 3614889, fact: 1678530, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'sazonov',
+    name: 'Сазонов С.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 157, akbFact: 120,
+    valPlan: 2364648, valFact: 1295624, valProg: 2092931,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 480,  fact: 347, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 78,   fact: 58,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 200,  fact: 125, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 140,  fact: 114, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 85,   fact: 54,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 2364648, fact: 1295624, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'shamrin',
+    name: 'Шамрин А.',
+    team: 'Пархоменко А.В.',
+    akbPlan: 181, akbFact: 157,
+    valPlan: 3480496, valFact: 1760590, valProg: 2844031,
+    kpis: [
+      { name: 'Майонез ТОП 10 + Соус 4 СКЮ', plan: 600,  fact: 430, unit: 'SKU' },
+      { name: 'РОСНЫБСНАБ АКБ',              plan: 70,   fact: 54,  unit: 'SKU' },
+      { name: 'ЕКО АКБ Консервы',            plan: 223,  fact: 130, unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Масло',       plan: 169,  fact: 111, unit: 'SKU' },
+      { name: 'Кетчуп АКБ',                  plan: 80,   fact: 44,  unit: 'SKU' },
+      { name: 'Общий вал',                   plan: 3480496, fact: 1760590, unit: '₽', isMoney: true },
+    ]
+  },
+  // ── Дмитриев Бокадо ──
+  {
+    id: 'bezugliy',
+    name: 'Безуглый А.А.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 161, akbFact: 120,
+    valPlan: 2118208, valFact: 884110, valProg: 1428178,
+    kpis: [
+      { name: 'Доширак АКБ',                  plan: 130, fact: 88,  unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 55,  fact: 19,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Маслины',      plan: 94,  fact: 59,  unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 75,  fact: 36,  unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 185, fact: 70,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 2118208, fact: 884110, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'dubina',
+    name: 'Дубина А.С.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 175, akbFact: 131,
+    valPlan: 3132419, valFact: 1743505, valProg: 2816431,
+    kpis: [
+      { name: 'Майонез Слобода',              plan: 304, fact: 184, unit: 'SKU' },
+      { name: 'Доширак АКБ',                  plan: 105, fact: 88,  unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 45,  fact: 6,   unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 150, fact: 110, unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 45,  fact: 39,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 3132419, fact: 1743505, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'librikht',
+    name: 'Либрихт С.А.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 132, akbFact: 125,
+    valPlan: 2246946, valFact: 1556490, valProg: 2514330,
+    kpis: [
+      { name: 'Доширак АКБ',                  plan: 185, fact: 129, unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 95,  fact: 80,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Маслины',      plan: 0,   fact: 98,  unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 95,  fact: 80,  unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 240, fact: 117, unit: 'SKU' },
+      { name: '5 Морей АКБ',                  plan: 25,  fact: 25,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 2246946, fact: 1556490, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'reshetnyak',
+    name: 'Решетняк А.С.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 140, akbFact: 155,
+    valPlan: 3595520, valFact: 2041235, valProg: 3297379,
+    kpis: [
+      { name: 'Майонез Слобода',              plan: 265, fact: 258, unit: 'SKU' },
+      { name: 'Доширак АКБ',                  plan: 140, fact: 133, unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 50,  fact: 40,  unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 210, fact: 167, unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 50,  fact: 40,  unit: 'SKU' },
+      { name: '5 Морей АКБ',                  plan: 20,  fact: 1,   unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 3595520, fact: 2041235, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'savich',
+    name: 'Савич С.М.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 157, akbFact: 120,
+    valPlan: 2256969, valFact: 1116318, valProg: 1803284,
+    kpis: [
+      { name: 'Доширак АКБ',                  plan: 175, fact: 119, unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 85,  fact: 44,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Маслины',      plan: 0,   fact: 75,  unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 85,  fact: 44,  unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 295, fact: 144, unit: 'SKU' },
+      { name: '5 Морей АКБ',                  plan: 25,  fact: 17,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 2256969, fact: 1116318, unit: '₽', isMoney: true },
+    ]
+  },
+  {
+    id: 'saprunov',
+    name: 'Сапрунов М.М.',
+    team: 'Дмитриев М.Н. · Бокадо',
+    akbPlan: 181, akbFact: 122,
+    valPlan: 2969938, valFact: 1486483, valProg: 2401241,
+    kpis: [
+      { name: 'Доширак АКБ',                  plan: 185, fact: 143, unit: 'SKU' },
+      { name: 'Бокадо Ананасы+Оливки',        plan: 65,  fact: 32,  unit: 'SKU' },
+      { name: 'Оливлайн Оливки+Маслины',      plan: 0,   fact: 87,  unit: 'SKU' },
+      { name: 'Олейна SKU',                   plan: 65,  fact: 32,  unit: 'SKU' },
+      { name: 'Бокадо Горох+Кукуруза+Грибы',  plan: 275, fact: 118, unit: 'SKU' },
+      { name: '5 Морей АКБ',                  plan: 25,  fact: 25,  unit: 'SKU' },
+      { name: 'Общий вал',                    plan: 2969938, fact: 1486483, unit: '₽', isMoney: true },
+    ]
+  },
+];
+
+// ─── КОНСТАНТЫ ПЕРИОДА ──────────────────────────────────────────────────────
+const TOTAL_DAYS = 21;
+const DAYS_LEFT = 8;
+const DAYS_PASSED = 13;
+
+// ─── UTILS ──────────────────────────────────────────────────────────────────
+function pct(fact, plan) {
+  if (!plan || plan === 0) return fact > 0 ? 110 : 0;
+  return Math.round(fact / plan * 100);
+}
+
+// План на день = (план - факт) / осталось дней
+function planPerDay(plan, fact) {
+  const remaining = plan - fact;
+  if (remaining <= 0) return 0; // уже выполнено
+  return remaining / DAYS_LEFT;
+}
+
+function fmtPerDay(n, isMoney) {
+  if (n <= 0) return '✓';
+  if (isMoney) {
+    if (n >= 1000000) return (n/1000000).toFixed(2) + ' млн';
+    if (n >= 1000)    return (n/1000).toFixed(0) + ' тыс';
+    return Math.round(n);
+  }
+  return n < 10 ? n.toFixed(1) : Math.round(n);
+}
+
+function fmtM(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + ' млн';
+  if (n >= 1000)    return (n/1000).toFixed(0) + ' тыс';
+  return n;
+}
+
+function colorByPct(p) {
+  if (p >= 90) return { css: 'var(--green)', cls: 'c-green', bg: 'bg-green', quality: 'good' };
+  if (p >= 75) return { css: 'var(--yellow)', cls: 'c-yellow', bg: 'bg-yellow', quality: 'warn' };
+  if (p >= 60) return { css: 'var(--orange)', cls: 'c-orange', bg: 'bg-orange', quality: 'warn' };
+  return { css: 'var(--red)', cls: 'c-red', bg: 'bg-red', quality: 'bad' };
+}
+
+function avgKpiPct(agent) {
+  const kpisNoMoney = agent.kpis.filter(k => !k.isMoney);
+  if (!kpisNoMoney.length) return pct(agent.valFact, agent.valPlan);
+  const sum = kpisNoMoney.reduce((s, k) => s + pct(k.fact, k.plan), 0);
+  return Math.round(sum / kpisNoMoney.length);
+}
+
+// ─── SORT ───────────────────────────────────────────────────────────────────
+let currentSort = 'val';
+let currentAgent = null;
+
+function sortAgents(by) {
+  currentSort = by;
+  document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderList();
+}
+
+// ─── RENDER LIST ────────────────────────────────────────────────────────────
+const TEAMS = [
+  { id: 'bob', label: 'Команда Бобченко · ДФЗ-1', match: a => a.team.includes('Бобченко') || a.team.includes('ДФЗ') },
+  { id: 'park', label: 'Команда Пархоменко · ДФЗ-2', match: a => a.team.includes('Пархоменко') },
+  { id: 'dmi', label: 'Команда Дмитриева · Бокадо', match: a => a.team.includes('Дмитриев') },
+];
+
+function renderList() {
+  const list = document.getElementById('agent-list');
+  list.innerHTML = '';
+
+  let sorted = [...AGENTS];
+  if (currentSort === 'val') {
+    sorted.sort((a,b) => pct(b.valFact, b.valPlan) - pct(a.valFact, a.valPlan));
+  } else if (currentSort === 'akb') {
+    sorted.sort((a,b) => pct(b.akbFact, b.akbPlan) - pct(a.akbFact, a.akbPlan));
+  } else {
+    sorted.sort((a,b) => a.name.localeCompare(b.name));
+  }
+
+  // Group by team if not sorted by name
+  if (currentSort !== 'name') {
+    const teams = [
+      { label: '▸ КОМАНДА БОБЧЕНКО', agents: sorted.filter(a => a.team.includes('ДФЗ') || (a.team.includes('Бобченко') && !a.team.includes('Дмитриев'))) },
+      { label: '▸ КОМАНДА ПАРХОМЕНКО', agents: sorted.filter(a => a.team.includes('Пархоменко')) },
+      { label: '▸ КОМАНДА ДМИТРИЕВА · БОКАДО', agents: sorted.filter(a => a.team.includes('Дмитриев')) },
+    ];
+    teams.forEach(team => {
+      if (!team.agents.length) return;
+      list.innerHTML += `<div class="team-sep">${team.label}</div>`;
+      team.agents.forEach(a => renderAgentItem(list, a));
+    });
+  } else {
+    sorted.forEach(a => renderAgentItem(list, a));
+  }
+}
+
+function renderAgentItem(container, agent) {
+  const vp = pct(agent.valFact, agent.valPlan);
+  const ap = pct(agent.akbFact, agent.akbPlan);
+  const col = colorByPct(vp);
+  const isActive = currentAgent && currentAgent.id === agent.id;
+
+  const div = document.createElement('div');
+  div.className = `agent-item${isActive ? ' active' : ''}`;
+  div.dataset.id = agent.id;
+  div.innerHTML = `
+    <div class="ag-row1">
+      <div class="ag-name">${agent.name}</div>
+      <div class="ag-pct" style="color:${isActive ? '#fff' : col.css}">${vp}%</div>
+    </div>
+    <div class="ag-bar-wrap">
+      <div class="ag-bar-fill ${col.bg}" style="width:${Math.min(vp,100)}%"></div>
+    </div>
+    <div class="ag-meta">
+      <span>АКБ: ${agent.akbFact}/${agent.akbPlan} (${ap}%)</span>
+      <span>${fmtM(agent.valFact)} / ${fmtM(agent.valPlan)}</span>
+    </div>`;
+  div.onclick = () => selectAgent(agent.id);
+  container.appendChild(div);
+}
+
+// ─── SELECT AGENT ───────────────────────────────────────────────────────────
+function selectAgent(id) {
+  currentAgent = AGENTS.find(a => a.id === id);
+  renderList();
+  renderDetail(currentAgent);
+}
+
+// ─── RENDER DETAIL ──────────────────────────────────────────────────────────
+function renderDetail(agent) {
+  const panel = document.getElementById('detail-panel');
+  const vp = pct(agent.valFact, agent.valPlan);
+  const ap = pct(agent.akbFact, agent.akbPlan);
+  const progPct = Math.round(agent.valProg / agent.valPlan * 100);
+  const vcol = colorByPct(vp);
+  const acol = colorByPct(ap);
+
+  // Build KPI rows HTML
+  let kpiRowsHtml = '';
+  agent.kpis.forEach((k, i) => {
+    const p = pct(k.fact, k.plan);
+    const col = colorByPct(p);
+    const barW = Math.min(p, 120);
+    const factLabel = k.isMoney ? fmtM(k.fact) : k.fact;
+    const planLabel = k.isMoney ? fmtM(k.plan) : k.plan;
+    const overflowW = p > 100 ? `width:100%;` : `width:${barW}%;`;
+    const overflowStyle = p > 100 ? `background: repeating-linear-gradient(45deg, ${col.css}, ${col.css} 4px, transparent 4px, transparent 8px);` : `background:${col.css};`;
+
+    // План на день
+    const perDay = planPerDay(k.plan, k.fact);
+    const perDayLabel = fmtPerDay(perDay, k.isMoney);
+    let perDayClass = 'kpi-perday';
+    if (perDay <= 0) perDayClass += ' done';
+    else {
+      // Если для выполнения нужно делать больше, чем средний дневной темп прошлого периода — это "горячо"
+      const avgDailyPast = k.fact / DAYS_PASSED;
+      if (perDay > avgDailyPast * 1.5) perDayClass += ' hot';
+    }
+
+    kpiRowsHtml += `
+      <div class="kpi-row" style="animation-delay:${i * 0.06}s">
+        <div class="kpi-label">${k.name}</div>
+        <div class="kpi-bar-track">
+          <div class="kpi-bar-fill" style="${overflowW} ${overflowStyle}"></div>
+          <div class="kpi-bar-target" style="left:${Math.min(80/120*100,66.6)}%"></div>
+        </div>
+        <div class="kpi-pct" style="color:${col.css}">${p}%</div>
+        <div class="kpi-fact">${factLabel}</div>
+        <div class="kpi-plan">${planLabel} пл</div>
+        <div class="${perDayClass}">${perDayLabel}${k.isMoney || perDay <= 0 ? '' : '/д'}</div>
+      </div>`;
+  });
+
+  // Summary mini KPIs
+  const kpisNoM = agent.kpis.filter(k => !k.isMoney);
+  const above80 = kpisNoM.filter(k => pct(k.fact, k.plan) >= 80).length;
+  const below60 = kpisNoM.filter(k => pct(k.fact, k.plan) < 60).length;
+  const avgP = Math.round(kpisNoM.reduce((s,k) => s + pct(k.fact,k.plan), 0) / (kpisNoM.length||1));
+
+  panel.innerHTML = `
+    <div class="detail-header">
+      <div>
+        <div class="detail-name">${agent.name}</div>
+        <div class="detail-team">${agent.team}</div>
+      </div>
+      <div class="detail-score">
+        <div class="detail-score-val" style="color:${vcol.css}">${vp}%</div>
+        <div class="detail-score-label">Выполнение вала</div>
+      </div>
+    </div>
+
+    <div class="forecast-banner">
+      <div class="fc-card">
+        <div class="fc-card-label">АКБ факт / план</div>
+        <div class="fc-card-val" style="color:${acol.css}">${agent.akbFact} / ${agent.akbPlan}</div>
+        <div class="fc-card-sub">${ap}% выполнения</div>
+      </div>
+      <div class="fc-card">
+        <div class="fc-card-label">Вал факт</div>
+        <div class="fc-card-val">${fmtM(agent.valFact)}</div>
+        <div class="fc-card-sub">из ${fmtM(agent.valPlan)}</div>
+      </div>
+      <div class="fc-card" style="border-color:#e8d49a; background:#fffbf0;">
+        <div class="fc-card-label" style="color:#8a6d10">Нужно вала в день</div>
+        <div class="fc-card-val" style="color:#8a6d10">${fmtM(planPerDay(agent.valPlan, agent.valFact))}</div>
+        <div class="fc-card-sub">чтобы выполнить план за ${DAYS_LEFT} дней</div>
+      </div>
+      <div class="fc-card">
+        <div class="fc-card-label">КПИ задач ≥ 80%</div>
+        <div class="fc-card-val" style="color:${above80 >= kpisNoM.length*0.7 ? 'var(--green)' : 'var(--orange)'}">${above80} / ${kpisNoM.length}</div>
+        <div class="fc-card-sub">Ср. по КПИ: ${avgP}%</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Детализация КПИ задач · план/день рассчитан на ${DAYS_LEFT} оставшихся дней</div>
+      <div style="display:grid; grid-template-columns: 180px 1fr 64px 80px 80px 90px; gap:12px; padding: 0 0 6px; font-family:var(--fm); font-size:9px; color:var(--ink3); letter-spacing:2px; text-transform:uppercase; border-bottom:2px solid var(--ink); margin-bottom:4px;">
+        <div>Задача</div>
+        <div></div>
+        <div style="text-align:right">%</div>
+        <div style="text-align:right">Факт</div>
+        <div style="text-align:right">План</div>
+        <div style="text-align:right">План/день</div>
+      </div>
+      ${kpiRowsHtml}
+    </div>
+
+    <div class="section">
+      <div class="section-title">Выполнение вала · детально</div>
+      <div class="gauge-row">
+        <div class="gauge-header">
+          <div class="gauge-name">Выполнено на сегодня</div>
+          <div class="gauge-nums">${fmtM(agent.valFact)} из ${fmtM(agent.valPlan)}</div>
+        </div>
+        <div class="gauge-track">
+          <div class="gauge-fill ${vcol.bg}" style="width:${Math.min(vp,100)}%"></div>
+        </div>
+        <div class="gauge-pct-label" style="color:${vcol.css}">${vp}%</div>
+      </div>
+      <div class="gauge-row">
+        <div class="gauge-header">
+          <div class="gauge-name">Прогноз к концу месяца</div>
+          <div class="gauge-nums">${fmtM(agent.valProg)} из ${fmtM(agent.valPlan)}</div>
+        </div>
+        <div class="gauge-track">
+          <div class="gauge-fill" style="width:${Math.min(progPct,100)}%; background:${colorByPct(progPct).css};"></div>
+        </div>
+        <div class="gauge-pct-label" style="color:${colorByPct(progPct).css}">${progPct}%</div>
+      </div>
+    </div>`;
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+renderList();
+</script>
+</body>
+</html>
