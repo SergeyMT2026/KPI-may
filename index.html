@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>КПИ Агенты · Май 2026</title>
+<title>КПИ Агенты · Июнь 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
+<script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=L4LaD_9td7DOGS6d8rj6r3xYXaHvQICxgYg-QGGE8_tJK9-Cu8gRA_7kADryTi7ST1cBBV7EzKtkieQJxp0yEb8lA6Uawbd9KkeWzpMZETopSNzf31FfKgk08RIGR77GzT5jSyZZnpE9R9QoNEnoJQeSaAnIhZv3fYXtxBMEgo3ZBOetIZtEl8CvFoSuEweAnUgAuDQKSaRNGpTfGNVPOSmls-g5IqrzvvOUhBY_LJZtkKaFEznOQhgzKSjpD1cikf70PPoaOY8P6Z7EzirR5Fii4lp5I9lbRNwSv6H8x0UUZIZ1S-ihrGlYWQHC7qCtak6KgNBeUV0_MtK2c9ei7mq2rh79DQK3LeDQXtMW-W4bKmjYd8zlKr2pPS6pK7HQx31yolED-4xE8pAAOzXIuXam5l3hpotv3zUpNSdicXcPTIcbZubNXO_HQjE3ySm7ieo3410hqR-agJTRMBZ_QlkJs2VeHNDdACwawi8_H8mp_Pt10Hvhn5MWJEi90MtZhYJirQ09vvf0DWhBXqmBgmoKtkmQvRBOC_9nMMdxJDacxFe9jK1pkyAIWRKvVKcoEahEivkJUFh6Ch8OMr0M7uYE7aCN5vUlB4Gw03xrkWweS37zpHy2u6QUoW2KE7OSmpvxZ2g8IlqfO7Y9OEevtLZE8ZoIGMnrmY-A8vrFbQnn4Yo4rYd-eLmJtJh8SxtZUf_dR7wm5AjIf9o0OSgO9ylkbVdG9c8d-jRF0Z6XFA_zwNwgI9mGk_jI0T0ipUxZTyrkjlOmeEIxu6OakLv51cZ-pjKTzVJ8I1Lpo5ssc_g9AKBXu96tzZUNsU8EnGZXRgJk0MMtYSnvW_8pkUEHuekG8oKwZkJppLHTNZlWJttfPkbj5a7Qwdw94Q_Y3jV2uyBqBBO0LLSdqCAS05fTNw" charset="UTF-8"></script><style>
 :root {
   --bg: #f5f2ed;
   --ink: #1a1714;
@@ -18,2015 +18,718 @@
   --orange: #d35400;
   --yellow: #c8960c;
   --green: #1a7a3c;
-  --accent: #1a1714;
   --ff: 'Syne', sans-serif;
   --fm: 'JetBrains Mono', monospace;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--ff);
-  min-height: 100vh;
-}
+body { background:var(--bg); color:var(--ink); font-family:var(--ff); min-height:100vh; }
 
 /* HEADER */
 .top-bar {
-  background: var(--ink);
-  color: var(--bg);
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background:var(--ink); color:var(--bg);
+  padding:18px 32px;
+  display:flex; align-items:center; justify-content:space-between;
 }
-.top-bar-title {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-family: var(--fm);
-}
-.top-bar-meta {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: #9a9690;
-  letter-spacing: 1px;
-}
+.top-bar-title { font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; font-family:var(--fm); }
+.top-bar-meta { font-family:var(--fm); font-size:11px; color:#9a9690; letter-spacing:1px; }
 
-/* BREADCRUMB */
-.breadcrumb {
-  padding: 12px 32px;
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
+/* DEPT SUMMARY */
+.dept-summary {
+  background:var(--ink); color:var(--bg);
+  padding:20px 32px; border-bottom:1px solid var(--border);
 }
-.breadcrumb span { cursor: pointer; }
-.breadcrumb span:hover { color: var(--ink); text-decoration: underline; }
-.breadcrumb .sep { color: var(--border2); }
+.dept-summary-row { display:flex; gap:16px; align-items:stretch; }
+.dept-headline {
+  flex:0 0 220px; display:flex; flex-direction:column; justify-content:center;
+  padding-right:16px; border-right:1px solid #2a2724;
+}
+.dept-headline-label { font-family:var(--fm); font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#8a8580; margin-bottom:6px; }
+.dept-headline-val { font-size:34px; font-weight:800; letter-spacing:-0.5px; line-height:1; }
+.dept-headline-sub { font-family:var(--fm); font-size:11px; color:#b8b3ab; margin-top:6px; }
+.dept-kpis { flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.dept-kpi { background:#2a2724; padding:10px 14px; }
+.dept-kpi-label { font-family:var(--fm); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:#8a8580; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dept-kpi-row { display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
+.dept-kpi-pct { font-family:var(--fm); font-size:18px; font-weight:700; }
+.dept-kpi-fact { font-family:var(--fm); font-size:10px; color:#b8b3ab; }
+.dept-kpi-bar { height:3px; background:#1a1714; margin-top:6px; overflow:hidden; }
+.dept-kpi-bar-fill { height:100%; transition:width 0.8s ease; }
 
 /* LAYOUT */
-.layout {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  min-height: calc(100vh - 60px);
-}
+.layout { display:grid; grid-template-columns:340px 1fr; min-height:calc(100vh - 130px); }
 
-/* LEFT PANEL — agent list */
+/* LEFT PANEL */
 .panel-left {
-  border-right: 1px solid var(--border);
-  background: var(--surface);
-  overflow-y: auto;
-  max-height: calc(100vh - 60px);
-  position: sticky;
-  top: 0;
+  border-right:1px solid var(--border); background:var(--surface);
+  overflow-y:auto; max-height:calc(100vh - 130px); position:sticky; top:0;
 }
-
 .panel-header {
-  padding: 20px 24px 14px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  background: var(--surface);
-  z-index: 10;
+  padding:18px 24px 14px; border-bottom:1px solid var(--border);
+  position:sticky; top:0; background:var(--surface); z-index:10;
 }
-.panel-header-title {
-  font-size: 11px;
-  font-family: var(--fm);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink3);
-  margin-bottom: 12px;
-}
+.panel-header-title { font-size:11px; font-family:var(--fm); letter-spacing:3px; text-transform:uppercase; color:var(--ink3); margin-bottom:12px; }
+.sort-tabs { display:flex; gap:4px; font-family:var(--fm); font-size:10px; }
+.sort-tab { padding:4px 10px; border:1px solid var(--border); cursor:pointer; color:var(--ink3); transition:all 0.15s; letter-spacing:1px; text-transform:uppercase; }
+.sort-tab.active, .sort-tab:hover { background:var(--ink); color:var(--bg); border-color:var(--ink); }
 
-/* Sort tabs */
-.sort-tabs {
-  display: flex;
-  gap: 4px;
-  font-family: var(--fm);
-  font-size: 10px;
-}
-.sort-tab {
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  color: var(--ink3);
-  transition: all 0.15s;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.sort-tab.active, .sort-tab:hover {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
+/* Agent items */
+.agent-item { padding:13px 24px; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.12s; }
+.agent-item:hover { background:#f0ece6; }
+.agent-item.active { background:var(--ink); color:var(--bg); }
+.agent-item.active .ag-name { color:var(--bg); }
+.agent-item.active .ag-meta { color:#9a9690; }
+.agent-item.active .ag-pct { color:var(--bg); }
+.agent-item.total { background:var(--ink); color:var(--bg); border-bottom:3px solid #2a2724; }
+.agent-item.total:hover { background:#2a2724; }
+.agent-item.total .ag-name { color:var(--bg); font-size:13px; letter-spacing:1.5px; }
+.agent-item.total .ag-meta { color:#b8b3ab; }
+.agent-item.total .ag-bar-wrap { background:#3a3431; }
+.agent-item.total.active { background:#2a2724; }
 
-/* Agent card in list */
-.agent-item {
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: background 0.12s;
-  position: relative;
-}
-.agent-item:hover { background: #f0ece6; }
-.agent-item.active {
-  background: var(--ink);
-  color: var(--bg);
-}
-.agent-item.active .ag-name { color: var(--bg); }
-.agent-item.active .ag-meta { color: #9a9690; }
-.agent-item.active .ag-pct { color: var(--bg); }
+.ag-row1 { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+.ag-name { font-weight:700; font-size:14px; color:var(--ink); }
+.ag-pct { font-family:var(--fm); font-size:16px; font-weight:700; }
+.ag-bar-wrap { height:3px; background:var(--border); margin-bottom:6px; overflow:hidden; }
+.ag-bar-fill { height:100%; transition:width 0.6s ease; }
+.ag-meta { display:flex; justify-content:space-between; font-family:var(--fm); font-size:10px; color:var(--ink3); }
+.ag-forecast { margin-top:3px; font-size:9px; opacity:0.85; }
+.ag-forecast b { font-weight:700; }
+.team-sep { padding:7px 24px 4px; font-family:var(--fm); font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--ink3); background:var(--bg); border-bottom:1px solid var(--border); border-top:1px solid var(--border); margin-top:4px; }
 
-/* Total department - special row */
-.agent-item.total {
-  background: var(--ink);
-  color: var(--bg);
-  border-bottom: 3px solid var(--ink);
-}
-.agent-item.total:hover { background: #2a2724; }
-.agent-item.total .ag-name { color: var(--bg); font-size: 13px; letter-spacing: 1.5px; }
-.agent-item.total .ag-meta { color: #b8b3ab; }
-.agent-item.total .ag-bar-wrap { background: #3a3431; }
-.agent-item.total.active { background: #2a2724; }
-
-.ag-row1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 6px;
-}
-.ag-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--ink);
-}
-.ag-pct {
-  font-family: var(--fm);
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.ag-bar-wrap {
-  height: 3px;
-  background: var(--border);
-  margin-bottom: 6px;
-  overflow: hidden;
-}
-.ag-bar-fill {
-  height: 100%;
-  transition: width 0.6s ease;
-}
-
-.ag-meta {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink3);
-}
-.ag-forecast {
-  margin-top: 4px;
-  font-size: 9px;
-  opacity: 0.85;
-}
-.ag-forecast b { font-weight: 700; }
-
-/* Team separator */
-.team-sep {
-  padding: 8px 24px 4px;
-  font-family: var(--fm);
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink3);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  border-top: 1px solid var(--border);
-  margin-top: 4px;
-}
-
-/* RIGHT PANEL — detail */
-.panel-right {
-  padding: 32px;
-  overflow-y: auto;
-}
-
-/* Empty state */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  min-height: 400px;
-  color: var(--ink3);
-  font-family: var(--fm);
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  gap: 12px;
-}
-.empty-arrow {
-  font-size: 32px;
-  color: var(--border2);
-}
+/* RIGHT PANEL */
+.panel-right { padding:32px; overflow-y:auto; }
+.empty-state { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:400px; color:var(--ink3); font-family:var(--fm); font-size:12px; letter-spacing:2px; text-transform:uppercase; gap:12px; }
+.empty-arrow { font-size:32px; color:var(--border2); }
 
 /* Detail header */
-.detail-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--ink);
-}
-.detail-name {
-  font-size: 38px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  line-height: 1;
-}
-.detail-team {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-  letter-spacing: 2px;
-  margin-top: 6px;
-  text-transform: uppercase;
-}
-.detail-score {
-  text-align: right;
-}
-.detail-score-val {
-  font-family: var(--fm);
-  font-size: 52px;
-  font-weight: 700;
-  line-height: 1;
-}
-.detail-score-label {
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink3);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+.detail-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:28px; padding-bottom:24px; border-bottom:2px solid var(--ink); }
+.detail-name { font-size:36px; font-weight:800; letter-spacing:-1px; line-height:1; }
+.detail-team { font-family:var(--fm); font-size:11px; color:var(--ink3); letter-spacing:2px; margin-top:6px; text-transform:uppercase; }
+.detail-score { text-align:right; }
+.detail-score-val { font-family:var(--fm); font-size:50px; font-weight:700; line-height:1; }
+.detail-score-label { font-family:var(--fm); font-size:10px; color:var(--ink3); letter-spacing:2px; text-transform:uppercase; }
 
 /* Forecast banner */
-.forecast-banner {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-.fc-card {
-  flex: 1;
-  padding: 14px 18px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-}
-.fc-card-label {
-  font-family: var(--fm);
-  font-size: 9px;
-  color: var(--ink3);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.fc-card-val {
-  font-family: var(--fm);
-  font-size: 18px;
-  font-weight: 700;
-}
-.fc-card-sub {
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink3);
-  margin-top: 2px;
-}
+.forecast-banner { display:flex; gap:12px; margin-bottom:28px; }
+.fc-card { flex:1; padding:14px 18px; border:1px solid var(--border); background:var(--surface); }
+.fc-card-label { font-family:var(--fm); font-size:9px; color:var(--ink3); letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+.fc-card-val { font-family:var(--fm); font-size:18px; font-weight:700; }
+.fc-card-sub { font-family:var(--fm); font-size:10px; color:var(--ink3); margin-top:2px; }
 
 /* Section */
-.section {
-  margin-bottom: 28px;
-}
-.section-title {
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink3);
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
+.section { margin-bottom:28px; }
+.section-title { font-family:var(--fm); font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink3); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border); }
 
 /* KPI row */
 .kpi-row {
-  display: grid;
-  grid-template-columns: 180px 1fr 64px 80px 80px 90px;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  animation: fadeUp 0.3s ease both;
+  display:grid; grid-template-columns:200px 1fr 64px 80px 80px 90px;
+  align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border);
+  animation:fadeUp 0.3s ease both;
 }
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(6px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-.kpi-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ink);
-}
-.kpi-bar-track {
-  height: 8px;
-  background: var(--border);
-  position: relative;
-  overflow: visible;
-}
-.kpi-bar-fill {
-  height: 100%;
-  transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
-  position: relative;
-}
-.kpi-bar-target {
-  position: absolute;
-  top: -4px;
-  width: 2px;
-  height: 16px;
-  background: var(--ink3);
-  opacity: 0.4;
-}
-.kpi-pct {
-  font-family: var(--fm);
-  font-size: 14px;
-  font-weight: 700;
-  text-align: right;
-}
-.kpi-fact {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-  text-align: right;
-}
-.kpi-plan {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-  text-align: right;
-}
-.kpi-perday {
-  font-family: var(--fm);
-  font-size: 12px;
-  font-weight: 700;
-  text-align: right;
-  padding: 4px 8px;
-  background: #fff4d6;
-  border: 1px solid #e8d49a;
-  border-radius: 2px;
-  color: #8a6d10;
-}
-.kpi-perday.done {
-  background: #e8f5e8;
-  border-color: #b5d8b5;
-  color: var(--green);
-}
-.kpi-perday.hot {
-  background: #fde4e0;
-  border-color: #e8b5ad;
-  color: var(--red);
-}
+@keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.kpi-label { font-size:13px; font-weight:700; color:var(--ink); }
+.kpi-bar-track { height:8px; background:var(--border); position:relative; overflow:hidden; }
+.kpi-bar-fill { height:100%; transition:width 0.8s cubic-bezier(0.16,1,0.3,1); }
+.kpi-pct { font-family:var(--fm); font-size:14px; font-weight:700; text-align:right; }
+.kpi-fact { font-family:var(--fm); font-size:11px; color:var(--ink3); text-align:right; }
+.kpi-plan { font-family:var(--fm); font-size:11px; color:var(--ink3); text-align:right; }
+.kpi-perday { font-family:var(--fm); font-size:12px; font-weight:700; text-align:right; padding:4px 8px; background:#fff4d6; border:1px solid #e8d49a; color:#8a6d10; }
+.kpi-perday.done { background:#e8f5e8; border-color:#b5d8b5; color:var(--green); }
+.kpi-perday.hot { background:#fde4e0; border-color:#e8b5ad; color:var(--red); }
 
-/* Status dot */
-.dot {
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  margin-right: 6px;
-  flex-shrink: 0;
-}
-
-/* Radar / spider placeholder — using CSS bars in circle layout */
-.spider-wrap {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 16px 0;
-}
-.spider-canvas {
-  flex-shrink: 0;
-}
-
-/* Mini KPI grid */
-.mini-kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.mini-kpi {
-  padding: 14px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  position: relative;
-  overflow: hidden;
-}
-.mini-kpi::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  height: 3px;
-  width: 100%;
-}
-.mini-kpi.good::after { background: var(--green); }
-.mini-kpi.warn::after { background: var(--yellow); }
-.mini-kpi.bad::after  { background: var(--red); }
-.mini-kpi-label {
-  font-family: var(--fm);
-  font-size: 9px;
-  color: var(--ink3);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.mini-kpi-val {
-  font-family: var(--fm);
-  font-size: 22px;
-  font-weight: 700;
-}
-.mini-kpi-sub {
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink3);
-  margin-top: 2px;
-}
-
-/* Gauge bar */
-.gauge-row {
-  margin-bottom: 14px;
-  animation: fadeUp 0.4s ease both;
-}
-.gauge-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-.gauge-name {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
-}
-.gauge-nums {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-}
-.gauge-track {
-  height: 12px;
-  background: var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.gauge-fill {
-  height: 100%;
-  transition: width 0.9s cubic-bezier(0.16,1,0.3,1);
-}
-.gauge-pct-label {
-  font-family: var(--fm);
-  font-size: 10px;
-  margin-top: 2px;
-  text-align: right;
-}
-
-/* Colors util */
-.c-green { color: var(--green); }
-.c-yellow { color: var(--yellow); }
-.c-orange { color: var(--orange); }
-.c-red { color: var(--red); }
-.bg-green { background: var(--green); }
-.bg-yellow { background: var(--yellow); }
-.bg-orange { background: var(--orange); }
-.bg-red { background: var(--red); }
-
-/* DEPARTMENT SUMMARY (top section) */
-.dept-summary {
-  background: var(--ink);
-  color: var(--bg);
-  padding: 22px 32px;
-  border-bottom: 1px solid var(--border);
-}
-.dept-summary-row {
-  display: flex;
-  gap: 16px;
-  align-items: stretch;
-}
-.dept-headline {
-  flex: 0 0 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-right: 16px;
-  border-right: 1px solid #2a2724;
-}
-.dept-headline-label {
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #8a8580;
-  margin-bottom: 6px;
-}
-.dept-headline-val {
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1;
-}
-.dept-headline-sub {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: #b8b3ab;
-  margin-top: 6px;
-}
-.dept-kpis {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-.dept-kpi {
-  background: #2a2724;
-  padding: 10px 14px;
-  border-radius: 2px;
-  position: relative;
-}
-.dept-kpi-label {
-  font-family: var(--fm);
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #8a8580;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.dept-kpi-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px;
-}
-.dept-kpi-pct {
-  font-family: var(--fm);
-  font-size: 18px;
-  font-weight: 700;
-}
-.dept-kpi-fact {
-  font-family: var(--fm);
-  font-size: 10px;
-  color: #b8b3ab;
-}
-.dept-kpi-bar {
-  height: 3px;
-  background: #1a1714;
-  margin-top: 6px;
-  overflow: hidden;
-  border-radius: 1px;
-}
-.dept-kpi-bar-fill {
-  height: 100%;
-  transition: width 0.8s ease;
-}
-.dept-summary-toggle {
-  cursor: pointer;
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #8a8580;
-  user-select: none;
-  text-align: right;
-  padding-top: 8px;
-}
-.dept-summary-toggle:hover { color: var(--bg); }
-.dept-summary.collapsed .dept-kpis { display: none; }
-.dept-summary.collapsed .dept-headline { border-right: none; }
-.dept-summary.collapsed .dept-summary-row { gap: 24px; }
-
-/* DISTRIBUTION section */
-.dist-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 4px;
-}
-.dist-col-title {
-  font-family: var(--fm);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dist-col-title.best { background: rgba(26,122,60,0.1); color: var(--green); }
-.dist-col-title.worst { background: rgba(192,57,43,0.1); color: var(--red); }
+/* Distribution grid */
+.dist-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:4px; }
+.dist-col-title { font-family:var(--fm); font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:6px 10px; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.dist-col-title.worst-vol { background:rgba(192,57,43,0.08); color:var(--red); }
+.dist-col-title.worst-akb { background:rgba(211,84,0,0.08); color:var(--orange); }
 .dist-row {
-  display: grid;
-  grid-template-columns: 1fr 60px 90px;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--border);
-  animation: fadeUp 0.3s ease both;
+  display:grid; grid-template-columns:1fr 55px 70px;
+  align-items:center; gap:8px; padding:7px 10px;
+  border-bottom:1px solid var(--border); animation:fadeUp 0.3s ease both;
 }
-.dist-cat {
-  font-size: 12px;
-  font-weight: 600;
-}
-.dist-actual {
-  font-family: var(--fm);
-  font-size: 13px;
-  font-weight: 700;
-  text-align: right;
-}
-.dist-target {
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink3);
-  text-align: right;
-}
-.dist-weekplan {
-  font-family: var(--fm);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--red);
-  background: rgba(192,57,43,0.08);
-  padding: 1px 5px;
-  border-radius: 1px;
-  margin-top: 2px;
-  display: inline-block;
-}
-.dist-comment {
-  grid-column: 1 / -1;
-  font-family: var(--fm);
-  font-size: 10px;
-  color: var(--ink2);
-  background: #f5f2ed;
-  padding: 5px 8px;
-  margin-top: 4px;
-  border-left: 2px solid var(--ink3);
-  line-height: 1.4;
-}
-.worst-row {
-  background: rgba(192,57,43,0.02);
-}
-.dist-bar {
-  grid-column: 1 / -1;
-  height: 3px;
-  background: var(--border);
-  border-radius: 1px;
-  overflow: visible;
-  position: relative;
-  margin-top: -2px;
-}
-.dist-bar-fill {
-  height: 100%;
-  border-radius: 1px;
-  transition: width 0.7s ease;
-}
-.dist-bar-target-line {
-  position: absolute;
-  top: -2px;
-  width: 1px;
-  height: 7px;
-  background: var(--ink);
-  opacity: 0.4;
-}
-.dist-empty {
-  font-family: var(--fm);
-  font-size: 11px;
-  color: var(--ink3);
-  padding: 14px;
-  text-align: center;
-  background: #f5f2ed;
-  border-radius: 2px;
-}
+.dist-cat { font-size:12px; font-weight:600; }
+.dist-actual { font-family:var(--fm); font-size:13px; font-weight:700; text-align:right; }
+.dist-target { font-family:var(--fm); font-size:10px; color:var(--ink3); text-align:right; }
+.dist-bar { grid-column:1/-1; height:3px; background:var(--border); overflow:hidden; margin-top:-2px; }
+.dist-bar-fill { height:100%; transition:width 0.7s ease; }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+/* Colors */
+.c-green{color:var(--green)} .c-yellow{color:var(--yellow)} .c-orange{color:var(--orange)} .c-red{color:var(--red)}
+.bg-green{background:var(--green)} .bg-yellow{background:var(--yellow)} .bg-orange{background:var(--orange)} .bg-red{background:var(--red)}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <div class="top-bar-title">КПИ · Торговые агенты · Май 2026</div>
-  <div class="top-bar-meta">22.05.2026 · 15 из 21 рабочих дней · 71% периода</div>
+  <div class="top-bar-title">КПИ · Торговые агенты · Июнь 2026</div>
+  <div class="top-bar-meta" id="top-meta">25.05.2026 · 9 из 21 рабочих дней · 43% периода</div>
 </div>
 
+<!-- Dept summary -->
+<div class="dept-summary" id="dept-summary"></div>
+
 <div class="layout">
-  <!-- LEFT PANEL -->
   <div class="panel-left">
     <div class="panel-header">
       <div class="panel-header-title">Отдел / менеджеры / агенты</div>
       <div class="sort-tabs">
-        <div class="sort-tab active" onclick="sortAgents('val', this)">Вал %</div>
-        <div class="sort-tab" onclick="sortAgents('akb', this)">АКБ %</div>
-        <div class="sort-tab" onclick="sortAgents('name', this)">Имя</div>
+        <div class="sort-tab active" onclick="sortAgents('val',this)">Вал %</div>
+        <div class="sort-tab" onclick="sortAgents('akb',this)">АКБ %</div>
+        <div class="sort-tab" onclick="sortAgents('name',this)">Имя</div>
       </div>
     </div>
     <div id="agent-list"></div>
   </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="panel-right" id="detail-panel">
+  <div class="panel-right" id="panel-right">
     <div class="empty-state">
       <div class="empty-arrow">←</div>
-      <div>Выберите агента для детализации</div>
+      <span>Выберите агента для детализации</span>
     </div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// DATA — каждый агент + все его КПИ задачи из таблицы
-// ═══════════════════════════════════════════════════════
-const AGENTS = [
-  {
-    id: 'total',
-    name: 'ОБЩЕЕ ВЫПОЛНЕНИЕ',
-    team: 'Весь отдел · 3 команды · 21 агент',
-    akbPlan: 3363, akbFact: 2627,
-    valPlan: 66500000, valFact: 34405732, valProg: 51608598,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 7528, fact: 5495, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 370, fact: 197, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1668, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 993, fact: 801, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 1160, fact: 484, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 1640, fact: 1257, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 460, fact: 271, unit: 'SKU' },
-      { name: 'АКБ общий', plan: 3363, fact: 2627, unit: 'SKU' },
-      { name: 'Общий вал', plan: 66500000, fact: 34405732, unit: '₽', isMoney: true },
-    ]
-  },
-  // ─── Команда Бобченко ────────────────────
-  {
-    id: 'bobchenko',
-    name: 'Бобченко Ю.В.',
-    team: 'ДФЗ-1 · Иванченко С.А.',
-    akbPlan: 1132, akbFact: 957,
-    valPlan: 26710000, valFact: 13445798, valProg: 20168698,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 3588, fact: 2680, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 155, fact: 96, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 1597, fact: 1083, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 993, fact: 801, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 520, fact: 341, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 371, fact: 375, unit: 'SKU' },
-      { name: 'Общий вал', plan: 26710000, fact: 13445798, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'borisov',
-    name: 'Борисов И.В.',
-    team: 'ДФЗ-3-02 · Бобченко',
-    akbPlan: 156, akbFact: 153,
-    valPlan: 4010091, valFact: 2106158, valProg: 3159237,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 600, fact: 412, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 12, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 250, fact: 182, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 145, fact: 131, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 90, fact: 57, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 50, fact: 48, unit: 'SKU' },
-      { name: 'Общий вал', plan: 4010091, fact: 2106158, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'borodina',
-    name: 'Бородина Д.В.',
-    team: 'ДФЗ-3-04 · Бобченко',
-    akbPlan: 179, akbFact: 147,
-    valPlan: 5137525, valFact: 2707329, valProg: 4060994,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 666, fact: 474, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 12, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 260, fact: 152, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 145, fact: 109, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 75, fact: 49, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 50, fact: 50, unit: 'SKU' },
-      { name: 'Общий вал', plan: 5137525, fact: 2707329, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'gryn',
-    name: 'Грынь О.С.',
-    team: 'ДФЗ-2-07 · Бобченко',
-    akbPlan: 142, akbFact: 148,
-    valPlan: 4107843, valFact: 2360001, valProg: 3540001,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 667, fact: 532, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 17, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 255, fact: 193, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 175, fact: 143, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 100, fact: 71, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 50, fact: 63, unit: 'SKU' },
-      { name: 'Общий вал', plan: 4107843, fact: 2360001, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'karcev',
-    name: 'Карцев Н.М.',
-    team: 'ДФЗ-1-05 · Бобченко',
-    akbPlan: 158, akbFact: 157,
-    valPlan: 2834926, valFact: 1465665, valProg: 2198498,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 421, fact: 342, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 11, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 207, fact: 123, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 135, fact: 84, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 70, fact: 42, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 55, fact: 48, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2834926, fact: 1465665, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'konstantinova',
-    name: 'Константинова Ю.В.',
-    team: 'ДФЗ-1-02 · Бобченко',
-    akbPlan: 158, akbFact: 103,
-    valPlan: 3640437, valFact: 1409045, valProg: 2113567,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 404, fact: 235, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 14, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 230, fact: 132, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 135, fact: 112, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 70, fact: 39, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 66, fact: 56, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3640437, fact: 1409045, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'popovich',
-    name: 'Попович А.Р.',
-    team: 'ДФЗ-1-03 · Бобченко',
-    akbPlan: 138, akbFact: 128,
-    valPlan: 2688031, valFact: 1643386, valProg: 2465079,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 410, fact: 344, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 13, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 160, fact: 111, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 108, fact: 91, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 45, fact: 31, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 50, fact: 49, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2688031, fact: 1643386, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'pustovoy',
-    name: 'Пустовой А.А.',
-    team: 'ДФЗ-1-07 · Бобченко',
-    akbPlan: 149, akbFact: 129,
-    valPlan: 4291147, valFact: 1754214, valProg: 2631322,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 420, fact: 346, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 17, unit: 'SKU' },
-      { name: 'ЕКО + Бокадо: Горох/Куку/Фасоль/Грибы', plan: 235, fact: 190, unit: 'SKU' },
-      { name: 'Оливлайн + Бокадо: Оливки/Маслины', plan: 150, fact: 131, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 70, fact: 52, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 50, fact: 61, unit: 'SKU' },
-      { name: 'Общий вал', plan: 4291147, fact: 1754214, unit: '₽', isMoney: true },
-    ]
-  },
-  // ─── Команда Пархоменко ────────────────────
-  {
-    id: 'parkhomenko',
-    name: 'Пархоменко А.В.',
-    team: 'Руководитель ДФЗ-2',
-    akbPlan: 1123, akbFact: 899,
-    valPlan: 23470000, valFact: 11939543, valProg: 17909315,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 3371, fact: 2373, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 446, fact: 353, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 1507, fact: 910, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 588, fact: 711, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 555, fact: 333, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 194, fact: 182, unit: 'SKU' },
-      { name: 'Общий вал', plan: 23470000, fact: 11939543, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'agaev',
-    name: 'Агаев Р.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 161, akbFact: 130,
-    valPlan: 4988645, valFact: 2213778, valProg: 3320667,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 650, fact: 469, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 75, fact: 60, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 250, fact: 160, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 144, fact: 107, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 95, fact: 72, unit: 'SKU' },
-      { name: 'Общий вал', plan: 4988645, fact: 2213778, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'balinov',
-    name: 'Балинов М.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 177, akbFact: 143,
-    valPlan: 2764227, valFact: 1645375, valProg: 2468062,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 550, fact: 461, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 75, fact: 72, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 267, fact: 187, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 135, fact: 149, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 95, fact: 81, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2764227, fact: 1645375, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'zhir',
-    name: 'Жир Е.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 140, akbFact: 123,
-    valPlan: 2996443, valFact: 1619982, valProg: 2429973,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 450, fact: 257, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 48, fact: 34, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 185, fact: 83, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 135, fact: 96, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 65, fact: 35, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 78, fact: 51, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2996443, fact: 1619982, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'kostryukova',
-    name: 'Кострюкова Ю.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 175, akbFact: 113,
-    valPlan: 3260602, valFact: 1485755, valProg: 2228632,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 267, fact: 188, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 55, fact: 35, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 190, fact: 117, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 100, fact: 64, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 55, fact: 17, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 58, fact: 51, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3260602, fact: 1485755, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'petrov',
-    name: 'Петров Д.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 132, akbFact: 119,
-    valPlan: 3614889, valFact: 1849989, valProg: 2774983,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 374, fact: 221, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 45, fact: 40, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 192, fact: 108, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 100, fact: 70, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 80, fact: 30, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 58, fact: 80, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3614889, fact: 1849989, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'sazonov',
-    name: 'Сазонов С.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 157, akbFact: 120,
-    valPlan: 2364648, valFact: 1294785, valProg: 1942177,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 480, fact: 347, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 78, fact: 58, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 200, fact: 125, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 140, fact: 114, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 85, fact: 54, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2364648, fact: 1294785, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'shamrin',
-    name: 'Шамрин А.',
-    team: 'Пархоменко А.В.',
-    akbPlan: 181, akbFact: 157,
-    valPlan: 3480496, valFact: 1829881, valProg: 2744821,
-    kpis: [
-      { name: 'Майонез ТОП + Соус 4 СКЮ', plan: 600, fact: 430, unit: 'SKU' },
-      { name: 'РОСРЫБСНАБ АКБ', plan: 70, fact: 54, unit: 'SKU' },
-      { name: 'ЕКО АКБ Горох-Куку-Грибы-Фасоль', plan: 223, fact: 130, unit: 'SKU' },
-      { name: 'Оливлайн Оливки/Маслины/Масло', plan: 169, fact: 111, unit: 'SKU' },
-      { name: 'Кетчуп АКБ', plan: 80, fact: 44, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3480496, fact: 1829881, unit: '₽', isMoney: true },
-    ]
-  },
-  // ─── Команда Дмитриева (Бокадо) ────────────────────
-  {
-    id: 'dmitriev',
-    name: 'Дмитриев М.Н.',
-    team: 'Руководитель · Бокадо СВ',
-    akbPlan: 1108, akbFact: 771,
-    valPlan: 16320000, valFact: 9020390, valProg: 13530585,
-    kpis: [
-      { name: 'Майонез Слобода', plan: 569, fact: 442, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 155, fact: 88, unit: 'SKU' },
-      { name: 'Бокадо Горох-Куку-Фасоль-Грибы', plan: 1155, fact: 568, unit: 'SKU' },
-      { name: 'Бокадо Оливки-Маслины-Ананасы', plan: 545, fact: 388, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 460, fact: 271, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 1075, fact: 700, unit: 'SKU' },
-      { name: 'Общий вал', plan: 16320000, fact: 9020390, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'bezugliy',
-    name: 'Безуглый А.А.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 161, akbFact: 120,
-    valPlan: 2118208, valFact: 919066, valProg: 1378600,
-    kpis: [
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 19, unit: 'SKU' },
-      { name: 'Бокадо Горох-Куку-Фасоль-Грибы', plan: 185, fact: 70, unit: 'SKU' },
-      { name: 'Бокадо Оливки-Маслины-Ананасы', plan: 100, fact: 60, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 75, fact: 36, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 130, fact: 88, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2118208, fact: 919066, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'dubina',
-    name: 'Дубина А.С.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 175, akbFact: 131,
-    valPlan: 3132419, valFact: 1766871, valProg: 2650306,
-    kpis: [
-      { name: 'Майонез Слобода', plan: 304, fact: 184, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 1, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 45, fact: 39, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 105, fact: 88, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3132419, fact: 1766871, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'librikht',
-    name: 'Либрихт С.А.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 132, akbFact: 125,
-    valPlan: 2246946, valFact: 1636500, valProg: 2454750,
-    kpis: [
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 25, unit: 'SKU' },
-      { name: 'Бокадо Горох-Куку-Фасоль-Грибы', plan: 240, fact: 117, unit: 'SKU' },
-      { name: 'Бокадо Оливки-Маслины-Ананасы', plan: 115, fact: 93, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 95, fact: 80, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 185, fact: 129, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2246946, fact: 1636500, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'reshetnyak',
-    name: 'Решетняк А.С.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 140, akbFact: 155,
-    valPlan: 3595520, valFact: 2041235, valProg: 3061852,
-    kpis: [
-      { name: 'Майонез Слобода', plan: 265, fact: 258, unit: 'SKU' },
-      { name: '5 Морей АКБ 3 СКЮ', plan: 20, fact: 1, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 50, fact: 40, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 140, fact: 133, unit: 'SKU' },
-      { name: 'Общий вал', plan: 3595520, fact: 2041235, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'savich',
-    name: 'Савич С.М.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 157, akbFact: 120,
-    valPlan: 2256969, valFact: 1170235, valProg: 1755353,
-    kpis: [
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 17, unit: 'SKU' },
-      { name: 'Бокадо Горох-Куку-Фасоль-Грибы', plan: 295, fact: 144, unit: 'SKU' },
-      { name: 'Бокадо Оливки-Маслины-Ананасы', plan: 120, fact: 75, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 85, fact: 44, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 175, fact: 119, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2256969, fact: 1170235, unit: '₽', isMoney: true },
-    ]
-  },
-  {
-    id: 'saprunov',
-    name: 'Сапрунов М.М.',
-    team: 'Дмитриев М.Н. · Бокадо',
-    akbPlan: 181, akbFact: 122,
-    valPlan: 2969938, valFact: 1486483, valProg: 2229724,
-    kpis: [
-      { name: '5 Морей АКБ 3 СКЮ', plan: 25, fact: 25, unit: 'SKU' },
-      { name: 'Бокадо Горох-Куку-Фасоль-Грибы', plan: 275, fact: 118, unit: 'SKU' },
-      { name: 'Бокадо Оливки-Маслины-Ананасы', plan: 120, fact: 87, unit: 'SKU' },
-      { name: 'Олейна СКЮ Суммарно', plan: 65, fact: 32, unit: 'SKU' },
-      { name: 'Доширак Вермишель-Пюре-Пальдо', plan: 185, fact: 143, unit: 'SKU' },
-      { name: 'Общий вал', plan: 2969938, fact: 1486483, unit: '₽', isMoney: true },
-    ]
-  },
-];
-
-
-// ─── ДИСТРИБУЦИЯ — ТОП лучших и худших по покрытию (последний срез) ────────
-// Структура: agent_id -> [{cat, actual, target}]
-// Для команд Бобченко/Пархоменко цель = 100% (выполнение плана по SKU)
-// Для команды Бокадо цели разные по категориям (см. отдельную страницу таблицы)
-const DISTRIBUTION = {
-  // ─── ОБЩЕЕ ВЫПОЛНЕНИЕ — системный анализ по отделу ─────────────
-  'total': {
-    best: [
-      { cat: 'Доширак', actual: 65.8, target: 80, comment: 'Лучшая категория по отделу. Команда Бобченко 88%, Пархоменко 87%, проседает Бокадо 69%' },
-      { cat: 'Bocado (общий)', actual: 47.5, target: 90, comment: 'Огромный разрыв до цели. Бокадо команда 63%, у Бобченко 36%, Пархоменко всего 20%' },
-      { cat: 'Майонез Слобода', actual: 43.2, target: 75, comment: 'Бобченко 60%, Пархоменко 59%, Бокадо 16%. Бокадо не работает с категорией' },
-      { cat: 'Сохр. традиции', actual: 36.4, target: 60, comment: 'Бокадо команда 49%, у остальных слабее. Есть резерв' },
-      { cat: 'Росрыбснаб', actual: 32.9, target: 60, comment: 'Бобченко 37%, Пархоменко 42% — оба ниже цели на 20+пп' },
-    ],
-    worst: [
-      { cat: 'Соус Слобода', actual: 11.4, target: 70, comment: 'СИСТЕМНЫЙ ПРОВАЛ -58,6пп. Категория не приоритет ни у кого' },
-      { cat: 'Eko Фасоль', actual: 7.5, target: 65, comment: 'Сложно с дистрибуцией, особенно у Бокадо' },
-      { cat: 'IBERICA Оливки', actual: 23.9, target: 80, comment: 'Только Шамрин и Сазонов достигают 50%, остальные провал' },
-      { cat: 'Доширак вермишель', actual: 24.4, target: 80, comment: 'Странно: общий Доширак 66%, а отдельно вермишель 24%. Несоответствие данных' },
-      { cat: 'СЛАВЯНСКИЙ КЗ', actual: 26.3, target: 75, comment: 'У Бобченко 32%, у Пархоменко 40%. Везде слабо' },
-      { cat: 'Eko Кукуруза', actual: 11.6, target: 60, comment: 'Только Бобченко 18%, остальные ниже 15%' },
-      { cat: 'Bocado Горох', actual: 13.8, target: 60, comment: 'Бокадо 19%, Бобченко 11%, Пархоменко 3% — системное недоиспользование' },
-      { cat: 'Bocado Кукуруза', actual: 14.2, target: 60, comment: 'Аналогично Гороху, та же системная проблема' },
-      { cat: 'Eko Горох', actual: 15.4, target: 60, comment: 'Половина агентов в красной зоне ниже 15%' },
-      { cat: 'Maestro Оливки', actual: 17.0, target: 60, comment: 'Только Сазонов/Шамрин выше 30%, у Бокадо 0' },
-    ]
-  },
-
-  // ─── Команда Бобченко ─────────────────────────────
-  'bobchenko': {
-    best: [
-      { cat: 'Доширак', actual: 88.7, target: 80 },
-      { cat: 'Доширак вермишель', actual: 69.7, target: 80 },
-      { cat: 'Майонез Слобода', actual: 59.8, target: 75 },
-      { cat: 'OLIVE LINE', actual: 54.4, target: 80 },
-      { cat: 'Росрыбснаб', actual: 37.4, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado Фасоль', actual: 4.4, target: 65 },
-      { cat: 'Bocado (общий)', actual: 35.7, target: 90 },
-      { cat: 'Eko Фасоль', actual: 14.1, target: 65 },
-      { cat: 'Bocado Сгущ.', actual: 5.1, target: 55 },
-      { cat: 'Bocado Том. паста', actual: 5.3, target: 55 },
-      { cat: 'Bocado Горох', actual: 11.2, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 11.2, target: 60 },
-      { cat: 'Bocado Мука', actual: 2.0, target: 50 },
-      { cat: 'IBERICA Оливки', actual: 32.1, target: 80 },
-      { cat: 'Bocado Соусы', actual: 7.8, target: 55 },
-    ]
-  },
-  'borisov': {
-    best: [
-      { cat: 'Доширак', actual: 92.8, target: 80 },
-      { cat: 'Доширак вермишель', actual: 71.9, target: 80 },
-      { cat: 'Майонез Слобода', actual: 58.8, target: 75 },
-      { cat: 'OLIVE LINE', actual: 58.8, target: 80 },
-      { cat: 'IBERICA Ананасы', actual: 28.1, target: 40 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 28.1, target: 90 },
-      { cat: 'Bocado Фасоль', actual: 3.3, target: 65 },
-      { cat: 'Bocado Горох', actual: 8.5, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 3.9, target: 55 },
-      { cat: 'Bocado Кукуруза', actual: 9.8, target: 60 },
-      { cat: 'Bocado Специи', actual: 6.5, target: 55 },
-      { cat: 'Bocado Том. паста', actual: 6.5, target: 55 },
-      { cat: 'Bocado Крупа фас.', actual: 7.2, target: 55 },
-      { cat: 'Bocado Мука', actual: 2.6, target: 50 },
-      { cat: 'Bocado Соусы', actual: 7.8, target: 55 },
-    ]
-  },
-  'borodina': {
-    best: [
-      { cat: 'Доширак', actual: 92.5, target: 80 },
-      { cat: 'Доширак вермишель', actual: 80.3, target: 80 },
-      { cat: 'Майонез Слобода', actual: 69.4, target: 75 },
-      { cat: 'СЛАВЯНСКИЙ КЗ', actual: 56.5, target: 75 },
-      { cat: 'Росрыбснаб', actual: 41.5, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado Горох', actual: 7.5, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 8.2, target: 60 },
-      { cat: 'Bocado (общий)', actual: 39.5, target: 90 },
-      { cat: 'Bocado Специи', actual: 4.8, target: 55 },
-      { cat: 'Eko Фасоль', actual: 15.0, target: 65 },
-      { cat: 'IBERICA Оливки', actual: 30.6, target: 80 },
-      { cat: 'Крупы фас.', actual: 21.1, target: 70 },
-      { cat: 'Maestro Оливки', actual: 11.6, target: 60 },
-      { cat: 'Bocado Крупа фас.', actual: 6.8, target: 55 },
-      { cat: 'Bocado Фасоль', actual: 18.4, target: 65 },
-    ]
-  },
-  'gryn': {
-    best: [
-      { cat: 'Доширак', actual: 89.9, target: 80 },
-      { cat: 'Майонез Слобода', actual: 70.3, target: 75 },
-      { cat: 'Доширак вермишель', actual: 71.0, target: 80 },
-      { cat: 'OLIVE LINE', actual: 66.9, target: 80 },
-      { cat: 'Росрыбснаб', actual: 46.6, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 27.0, target: 90 },
-      { cat: 'Eko Фасоль', actual: 11.5, target: 65 },
-      { cat: 'Bocado Соусы', actual: 2.0, target: 55 },
-      { cat: 'Bocado Горох', actual: 9.5, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 10.8, target: 60 },
-      { cat: 'Bocado Крупа фас.', actual: 12.2, target: 55 },
-      { cat: 'Eko Горох', actual: 21.6, target: 60 },
-      { cat: 'IBERICA Оливки', actual: 42.6, target: 80 },
-      { cat: 'СЛАВЯНСКИЙ КЗ', actual: 37.8, target: 75 },
-      { cat: 'Bocado Икра Бакл.', actual: 4.7, target: 40 },
-    ]
-  },
-  'karcev': {
-    best: [
-      { cat: 'Доширак', actual: 88.0, target: 80 },
-      { cat: 'Доширак вермишель', actual: 65.4, target: 80 },
-      { cat: 'Майонез Слобода', actual: 52.8, target: 75 },
-      { cat: 'OLIVE LINE', actual: 39.6, target: 80 },
-      { cat: 'Доширак пюре', actual: 28.9, target: 65 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 25.8, target: 90 },
-      { cat: 'IBERICA Оливки', actual: 22.6, target: 80 },
-      { cat: 'Eko Фасоль', actual: 10.1, target: 65 },
-      { cat: 'Bocado Кукуруза', actual: 5.7, target: 60 },
-      { cat: 'Крупы фас.', actual: 16.4, target: 70 },
-      { cat: 'Bocado Горох', actual: 7.5, target: 60 },
-      { cat: 'Eko Кукуруза', actual: 8.2, target: 60 },
-      { cat: 'Bocado Том. паста', actual: 3.8, target: 55 },
-      { cat: 'Bocado Специи', actual: 4.4, target: 55 },
-      { cat: 'Bocado Соусы', actual: 5.7, target: 55 },
-    ]
-  },
-  'konstantinova': {
-    best: [
-      { cat: 'Доширак', actual: 82.5, target: 80 },
-      { cat: 'Доширак вермишель', actual: 68.9, target: 80 },
-      { cat: 'IBERICA Ананасы', actual: 33.0, target: 40 },
-      { cat: 'OLIVE LINE', actual: 59.2, target: 80 },
-      { cat: '5 Морей', actual: 21.4, target: 30 },
-    ],
-    worst: [
-      { cat: 'Bocado Фасоль', actual: 12.6, target: 65 },
-      { cat: 'Eko Фасоль', actual: 13.6, target: 65 },
-      { cat: 'Bocado Специи', actual: 4.8, target: 55 },
-      { cat: 'IBERICA Оливки', actual: 31.1, target: 80 },
-      { cat: 'Eko Горох', actual: 11.7, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 8.7, target: 55 },
-      { cat: 'Bocado Крупа фас.', actual: 9.7, target: 55 },
-      { cat: 'Крупы фас.', actual: 25.2, target: 70 },
-      { cat: 'Bocado Мука', actual: 5.8, target: 50 },
-      { cat: 'Eko Кукуруза', actual: 16.5, target: 60 },
-    ]
-  },
-  'popovich': {
-    best: [
-      { cat: 'Доширак', actual: 86.7, target: 80 },
-      { cat: 'Майонез Слобода', actual: 60.9, target: 75 },
-      { cat: 'Доширак вермишель', actual: 64.1, target: 80 },
-      { cat: 'Росрыбснаб', actual: 46.9, target: 60 },
-      { cat: 'СЛАВЯНСКИЙ КЗ', actual: 45.3, target: 75 },
-    ],
-    worst: [
-      { cat: 'Bocado Специи', actual: 2.3, target: 55 },
-      { cat: 'Bocado Кукуруза', actual: 9.4, target: 60 },
-      { cat: 'Eko Фасоль', actual: 15.6, target: 65 },
-      { cat: 'Bocado Горох', actual: 12.5, target: 60 },
-      { cat: 'IBERICA Оливки', actual: 32.8, target: 80 },
-      { cat: 'Eko Горох', actual: 13.3, target: 60 },
-      { cat: 'Bocado (общий)', actual: 43.8, target: 90 },
-      { cat: 'Eko Кукуруза', actual: 14.1, target: 60 },
-      { cat: 'Bocado Крупа фас.', actual: 11.7, target: 55 },
-      { cat: 'Maestro Оливки', actual: 18.8, target: 60 },
-    ]
-  },
-  'pustovoy': {
-    best: [
-      { cat: 'Доширак', actual: 83.1, target: 80 },
-      { cat: 'Доширак вермишель', actual: 62.3, target: 80 },
-      { cat: 'СЛАВЯНСКИЙ КЗ', actual: 53.1, target: 75 },
-      { cat: 'OLIVE LINE', actual: 55.4, target: 80 },
-      { cat: 'Майонез Слобода', actual: 51.5, target: 75 },
-    ],
-    worst: [
-      { cat: 'IBERICA Оливки', actual: 25.4, target: 80 },
-      { cat: 'Bocado Том. паста', actual: 3.9, target: 55 },
-      { cat: 'Eko Фасоль', actual: 14.6, target: 65 },
-      { cat: 'Bocado (общий)', actual: 44.6, target: 90 },
-      { cat: 'Bocado Горох', actual: 14.6, target: 60 },
-      { cat: 'Bocado Крупа фас.', actual: 10, target: 55 },
-      { cat: 'Bocado Специи', actual: 10, target: 55 },
-      { cat: 'Крупы фас.', actual: 25.4, target: 70 },
-      { cat: 'Bocado Кукуруза', actual: 16.9, target: 60 },
-      { cat: 'Сохр. традиции', actual: 18.5, target: 60 },
-    ]
-  },
-
-  // ─── Команда Пархоменко ───────────────────────────
-  'parkhomenko': {
-    best: [
-      { cat: 'Доширак', actual: 87.4, target: 80 },
-      { cat: 'Доширак вермишель', actual: 68.3, target: 80 },
-      { cat: 'Майонез Слобода', actual: 58.9, target: 75 },
-      { cat: 'OLIVE LINE', actual: 57.7, target: 80 },
-      { cat: 'Росрыбснаб', actual: 42.1, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 19.8, target: 90 },
-      { cat: 'Bocado Горох', actual: 3.1, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 3.6, target: 60 },
-      { cat: 'Eko Фасоль', actual: 9.7, target: 65 },
-      { cat: 'Bocado Крупа фас.', actual: 6.7, target: 55 },
-      { cat: 'IBERICA Оливки', actual: 34.8, target: 80 },
-      { cat: 'Крупы фас.', actual: 25.6, target: 70 },
-      { cat: 'Сохр. традиции', actual: 15.8, target: 60 },
-      { cat: 'Eko Горох', actual: 18.7, target: 60 },
-      { cat: 'Доширак пюре', actual: 24.8, target: 65 },
-    ]
-  },
-  'agaev': {
-    best: [
-      { cat: 'Доширак', actual: 80, target: 80 },
-      { cat: 'Майонез Слобода', actual: 60, target: 75 },
-      { cat: 'Доширак вермишель', actual: 55, target: 80 },
-      { cat: 'Росрыбснаб', actual: 38, target: 60 },
-      { cat: 'OLIVE LINE', actual: 50, target: 80 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 17, target: 90 },
-      { cat: 'IBERICA Оливки', actual: 30, target: 80 },
-      { cat: 'Maestro Оливки', actual: 19, target: 60 },
-      { cat: 'Eko Горох', actual: 21, target: 60 },
-      { cat: 'Сохр. традиции', actual: 22, target: 60 },
-      { cat: 'Биг Ланч', actual: 13, target: 50 },
-      { cat: 'Eko Кукуруза', actual: 24, target: 60 },
-      { cat: 'Кетчуп Слобода', actual: 30, target: 65 },
-      { cat: 'Соус Слобода', actual: 35, target: 70 },
-      { cat: 'Eko Фасоль', actual: 35, target: 65 },
-    ]
-  },
-  'balinov': {
-    best: [
-      { cat: 'Доширак', actual: 88, target: 80 },
-      { cat: 'Майонез Слобода', actual: 73, target: 75 },
-      { cat: 'Росрыбснаб', actual: 56, target: 60 },
-      { cat: 'Доширак вермишель', actual: 67, target: 80 },
-      { cat: 'Eko Фасоль', actual: 50, target: 65 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 45, target: 90 },
-      { cat: 'IBERICA Оливки', actual: 40, target: 80 },
-      { cat: 'Доширак пюре', actual: 35, target: 65 },
-      { cat: 'Биг Ланч', actual: 22, target: 50 },
-      { cat: 'Eko Горох', actual: 32, target: 60 },
-      { cat: 'Maestro Оливки', actual: 33, target: 60 },
-      { cat: 'Eko Кукуруза', actual: 35, target: 60 },
-      { cat: 'Сохр. традиции', actual: 38, target: 60 },
-      { cat: 'OLIVE LINE', actual: 60, target: 80 },
-      { cat: 'Кетчуп Слобода', actual: 45, target: 65 },
-    ]
-  },
-  'zhir': {
-    best: [
-      { cat: 'Доширак', actual: 76, target: 80 },
-      { cat: 'Майонез Слобода', actual: 50, target: 75 },
-      { cat: 'Доширак вермишель', actual: 50, target: 80 },
-      { cat: 'OLIVE LINE', actual: 45, target: 80 },
-      { cat: 'Росрыбснаб', actual: 28, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 24, target: 90 },
-      { cat: 'Bocado Горох', actual: 3, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 5, target: 60 },
-      { cat: 'IBERICA Оливки', actual: 28, target: 80 },
-      { cat: 'Eko Кукуруза', actual: 8, target: 60 },
-      { cat: 'Eko Горох', actual: 11, target: 60 },
-      { cat: 'Доширак пюре', actual: 18, target: 65 },
-      { cat: 'Сохр. традиции', actual: 14, target: 60 },
-      { cat: 'Кетчуп Слобода', actual: 22, target: 65 },
-      { cat: 'Maestro Оливки', actual: 18, target: 60 },
-    ]
-  },
-  'kostryukova': {
-    best: [
-      { cat: 'Доширак', actual: 70, target: 80 },
-      { cat: 'Доширак вермишель', actual: 45, target: 80 },
-      { cat: 'Майонез Слобода', actual: 35, target: 75 },
-      { cat: 'OLIVE LINE', actual: 35, target: 80 },
-      { cat: 'Росрыбснаб', actual: 18, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 25, target: 90 },
-      { cat: 'IBERICA Оливки', actual: 18, target: 80 },
-      { cat: 'Bocado Горох', actual: 4, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 7, target: 60 },
-      { cat: 'Eko Горох', actual: 7, target: 60 },
-      { cat: 'Соус Слобода', actual: 18, target: 70 },
-      { cat: 'Кетчуп Слобода', actual: 14, target: 65 },
-      { cat: 'Eko Кукуруза', actual: 9, target: 60 },
-      { cat: 'Eko Фасоль', actual: 17, target: 65 },
-      { cat: 'Доширак пюре', actual: 18, target: 65 },
-    ]
-  },
-  'petrov': {
-    best: [
-      { cat: 'Доширак', actual: 75, target: 80 },
-      { cat: 'Доширак вермишель', actual: 50, target: 80 },
-      { cat: 'Майонез Слобода', actual: 40, target: 75 },
-      { cat: 'OLIVE LINE', actual: 42, target: 80 },
-      { cat: 'Росрыбснаб', actual: 24, target: 60 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 26, target: 90 },
-      { cat: 'IBERICA Оливки', actual: 24, target: 80 },
-      { cat: 'Bocado Горох', actual: 5, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 6, target: 60 },
-      { cat: 'Соус Слобода', actual: 20, target: 70 },
-      { cat: 'Eko Горох', actual: 10, target: 60 },
-      { cat: 'Eko Кукуруза', actual: 12, target: 60 },
-      { cat: 'Кетчуп Слобода', actual: 18, target: 65 },
-      { cat: 'Доширак пюре', actual: 20, target: 65 },
-      { cat: 'Eko Фасоль', actual: 20, target: 65 },
-    ]
-  },
-  'sazonov': {
-    best: [
-      { cat: 'OLIVE LINE', actual: 80, target: 80 },
-      { cat: 'Доширак', actual: 80, target: 80 },
-      { cat: 'Майонез Слобода', actual: 65, target: 75 },
-      { cat: 'Росрыбснаб', actual: 48, target: 60 },
-      { cat: 'Доширак вермишель', actual: 60, target: 80 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 30, target: 90 },
-      { cat: 'Доширак пюре', actual: 28, target: 65 },
-      { cat: 'Eko Горох', actual: 25, target: 60 },
-      { cat: 'Eko Кукуруза', actual: 27, target: 60 },
-      { cat: 'Eko Фасоль', actual: 32, target: 65 },
-      { cat: 'Maestro Оливки', actual: 28, target: 60 },
-      { cat: 'Биг Ланч', actual: 18, target: 50 },
-      { cat: 'IBERICA Оливки', actual: 50, target: 80 },
-      { cat: 'Кетчуп Слобода', actual: 35, target: 65 },
-      { cat: 'Сохр. традиции', actual: 30, target: 60 },
-    ]
-  },
-  'shamrin': {
-    best: [
-      { cat: 'Доширак', actual: 85, target: 80 },
-      { cat: 'OLIVE LINE', actual: 80, target: 80 },
-      { cat: 'Майонез Слобода', actual: 70, target: 75 },
-      { cat: 'Росрыбснаб', actual: 50, target: 60 },
-      { cat: 'Доширак вермишель', actual: 65, target: 80 },
-    ],
-    worst: [
-      { cat: 'Bocado (общий)', actual: 35, target: 90 },
-      { cat: 'Eko Горох', actual: 22, target: 60 },
-      { cat: 'Доширак пюре', actual: 32, target: 65 },
-      { cat: 'IBERICA Оливки', actual: 50, target: 80 },
-      { cat: 'Maestro Оливки', actual: 30, target: 60 },
-      { cat: 'Биг Ланч', actual: 20, target: 50 },
-      { cat: 'Eko Кукуруза', actual: 30, target: 60 },
-      { cat: 'Eko Фасоль', actual: 35, target: 65 },
-      { cat: 'Сохр. традиции', actual: 32, target: 60 },
-      { cat: 'Кетчуп Слобода', actual: 40, target: 65 },
-    ]
-  },
-
-  // ─── Команда Дмитриева (Бокадо) ────────────────────
-  'dmitriev': {
-    best: [
-      { cat: 'Доширак', actual: 68.9, target: 80 },
-      { cat: 'Сохр. традиции', actual: 48.8, target: 60 },
-      { cat: 'Bocado (общий)', actual: 62.6, target: 90 },
-      { cat: 'Bocado Маслины', actual: 21.4, target: 40 },
-      { cat: 'Bocado Ананасы', actual: 19.5, target: 40 },
-    ],
-    worst: [
-      { cat: 'Кетчуп Слобода', actual: 5.1, target: 65 },
-      { cat: 'Майонез Слобода', actual: 15.9, target: 75 },
-      { cat: 'Eko Фасоль', actual: 8.6, target: 65 },
-      { cat: 'Доширак вермишель', actual: 25.9, target: 80 },
-      { cat: 'Bocado Фасоль', actual: 18.4, target: 65 },
-      { cat: 'Eko Горох', actual: 13.6, target: 60 },
-      { cat: 'Eko Кукуруза', actual: 13.6, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 12.7, target: 55 },
-      { cat: 'Bocado Горох', actual: 19.1, target: 60 },
-      { cat: 'Bocado Кукуруза', actual: 19.7, target: 60 },
-    ]
-  },
-  'bezugliy': {
-    best: [
-      { cat: 'Доширак', actual: 66.9, target: 80 },
-      { cat: 'Сохр. традиции', actual: 50, target: 60 },
-      { cat: 'Bocado (общий)', actual: 67.7, target: 90 },
-      { cat: 'Bocado Маслины', actual: 21.8, target: 40 },
-      { cat: 'Bocado Крупа фас.', actual: 28.2, target: 55 },
-    ],
-    worst: [
-      { cat: 'Доширак вермишель', actual: 14.5, target: 80 },
-      { cat: 'Bocado Фасоль', actual: 14.5, target: 65 },
-      { cat: 'Доширак пюре', actual: 14.5, target: 65 },
-      { cat: 'Bocado Горох', actual: 12.9, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 12.1, target: 55 },
-      { cat: 'Bocado Специи', actual: 12.1, target: 55 },
-      { cat: 'Bocado Кукуруза', actual: 17.7, target: 60 },
-      { cat: 'Bocado Мука', actual: 16.1, target: 50 },
-      { cat: 'Bocado Томаты', actual: 7.3, target: 40 },
-      { cat: 'Bocado Том. паста', actual: 22.6, target: 55 },
-    ]
-  },
-  'dubina': {
-    best: [
-      { cat: 'Доширак', actual: 68.7, target: 80 },
-      { cat: 'Доширак пюре', actual: 48.1, target: 65 },
-      { cat: 'Bocado (общий)', actual: 55.0, target: 90 },
-      { cat: 'Сохр. традиции', actual: 35.9, target: 60 },
-      { cat: 'Майонез Слобода', actual: 38.2, target: 75 },
-    ],
-    worst: [
-      { cat: 'Кетчуп Слобода', actual: 8.4, target: 65 },
-      { cat: 'Bocado Фасоль', actual: 12.2, target: 65 },
-      { cat: 'Bocado Кукуруза', actual: 8.4, target: 60 },
-      { cat: 'Bocado Горох', actual: 12.2, target: 60 },
-      { cat: 'Bocado Мука', actual: 4.6, target: 50 },
-      { cat: 'Доширак вермишель', actual: 38.2, target: 80 },
-      { cat: 'Bocado Том. паста', actual: 13.7, target: 55 },
-      { cat: 'Bocado Специи', actual: 14.5, target: 55 },
-      { cat: 'Bocado Крупа фас.', actual: 16.8, target: 55 },
-      { cat: 'Bocado Оливки', actual: 4.6, target: 40 },
-    ]
-  },
-  'librikht': {
-    best: [
-      { cat: 'Доширак', actual: 73.6, target: 80 },
-      { cat: 'Bocado Маслины', actual: 33.6, target: 40 },
-      { cat: 'Bocado (общий)', actual: 68.8, target: 90 },
-      { cat: 'Сохр. традиции', actual: 44, target: 60 },
-      { cat: 'Bocado Ананасы', actual: 28.8, target: 40 },
-    ],
-    worst: [
-      { cat: 'Bocado Фасоль', actual: 16, target: 65 },
-      { cat: 'Доширак вермишель', actual: 35.2, target: 80 },
-      { cat: 'Bocado Сгущ.', actual: 19.2, target: 55 },
-      { cat: 'Bocado Горох', actual: 24.8, target: 60 },
-      { cat: 'Bocado Мука', actual: 15.2, target: 50 },
-      { cat: 'Bocado Специи', actual: 20.8, target: 55 },
-      { cat: 'Bocado Кукуруза', actual: 28, target: 60 },
-      { cat: 'Доширак пюре', actual: 35.2, target: 65 },
-      { cat: 'Bocado Масло РАФ', actual: 12, target: 40 },
-      { cat: 'Bocado Соусы', actual: 28, target: 55 },
-    ]
-  },
-  'reshetnyak': {
-    best: [
-      { cat: 'Доширак', actual: 71.6, target: 80 },
-      { cat: 'Сохр. традиции', actual: 46.5, target: 60 },
-      { cat: 'Майонез Слобода', actual: 45.2, target: 75 },
-      { cat: 'Bocado (общий)', actual: 47.7, target: 90 },
-      { cat: 'Доширак пюре', actual: 25.2, target: 65 },
-    ],
-    worst: [
-      { cat: 'Кетчуп Слобода', actual: 8.4, target: 65 },
-      { cat: 'Доширак вермишель', actual: 25.2, target: 80 },
-      { cat: 'Bocado Горох', actual: 9.0, target: 60 },
-      { cat: 'Bocado Фасоль', actual: 14.2, target: 65 },
-      { cat: 'Bocado Кукуруза', actual: 11.6, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 10.3, target: 55 },
-      { cat: 'Bocado Специи', actual: 10.3, target: 55 },
-      { cat: 'Bocado Мука', actual: 6.5, target: 50 },
-      { cat: 'Bocado Том. паста', actual: 11.6, target: 55 },
-      { cat: 'Bocado Крупа фас.', actual: 16.8, target: 55 },
-    ]
-  },
-  'savich': {
-    best: [
-      { cat: 'Сохр. традиции', actual: 55.2, target: 60 },
-      { cat: 'Доширак', actual: 73.6, target: 80 },
-      { cat: 'Bocado (общий)', actual: 68.8, target: 90 },
-      { cat: 'Bocado Ананасы', actual: 28.8, target: 40 },
-      { cat: 'Bocado Маслины', actual: 28.8, target: 40 },
-    ],
-    worst: [
-      { cat: 'Доширак вермишель', actual: 34.4, target: 80 },
-      { cat: 'Bocado Масло РАФ', actual: 2.4, target: 40 },
-      { cat: 'Bocado Сгущ.', actual: 17.6, target: 55 },
-      { cat: 'Bocado Специи', actual: 17.6, target: 55 },
-      { cat: 'Bocado Том. паста', actual: 18.4, target: 55 },
-      { cat: 'Bocado Мука', actual: 15.2, target: 50 },
-      { cat: 'Bocado Фасоль', actual: 30.4, target: 65 },
-      { cat: 'Bocado Крупа фас.', actual: 22.4, target: 55 },
-      { cat: 'Bocado Соусы', actual: 22.4, target: 55 },
-      { cat: 'Доширак пюре', actual: 34.4, target: 65 },
-    ]
-  },
-  'saprunov': {
-    best: [
-      { cat: 'Сохр. традиции', actual: 62.3, target: 60 },
-      { cat: 'Доширак', actual: 79.5, target: 80 },
-      { cat: 'Bocado (общий)', actual: 71.3, target: 90 },
-      { cat: 'Bocado Маслины', actual: 29.5, target: 40 },
-      { cat: 'Bocado Грибы', actual: 25.4, target: 40 },
-    ],
-    worst: [
-      { cat: 'Доширак вермишель', actual: 32.0, target: 80 },
-      { cat: 'Bocado Кукуруза', actual: 16.4, target: 60 },
-      { cat: 'Bocado Сгущ.', actual: 17.2, target: 55 },
-      { cat: 'Bocado Горох', actual: 23.8, target: 60 },
-      { cat: 'Bocado Икра Бакл.', actual: 4.1, target: 40 },
-      { cat: 'Bocado Фасоль', actual: 31.1, target: 65 },
-      { cat: 'Bocado Томаты', actual: 6.6, target: 40 },
-      { cat: 'Доширак пюре', actual: 32.0, target: 65 },
-      { cat: 'Bocado Масло РАФ', actual: 9.0, target: 40 },
-      { cat: 'Bocado Оливки', actual: 14.8, target: 40 },
-    ]
-  },
+// ═══════════════════════════════════════
+// CALENDAR
+// ═══════════════════════════════════════
+const CAL = {
+  month: 'Июнь 2026', date: '25.05.2026',
+  days_total: 21, days_passed: 9, days_left: 12,
+  progress_pct: 43,
+  distrib_period: '1-9', next_distrib: '12.06.2026'
 };
 
-// ─── КОНСТАНТЫ ПЕРИОДА ──────────────────────────────────────────────────────
-const TOTAL_DAYS = 21;
-const DAYS_LEFT = 6;
-const DAYS_PASSED = 15;
-
-// ─── UTILS ──────────────────────────────────────────────────────────────────
-function pct(fact, plan) {
-  if (!plan || plan === 0) return fact > 0 ? 110 : 0;
-  return Math.round(fact / plan * 100);
-}
-
-// План на день = (план - факт) / осталось дней
-function planPerDay(plan, fact) {
-  const remaining = plan - fact;
-  if (remaining <= 0) return 0; // уже выполнено
-  return remaining / DAYS_LEFT;
-}
-
-function fmtPerDay(n, isMoney) {
-  if (n <= 0) return '✓';
-  if (isMoney) {
-    if (n >= 1000000) return (n/1000000).toFixed(2) + ' млн';
-    if (n >= 1000)    return (n/1000).toFixed(0) + ' тыс';
-    return Math.round(n);
-  }
-  return n < 10 ? n.toFixed(1) : Math.round(n);
-}
-
-function fmtM(n) {
-  if (n >= 1000000) return (n/1000000).toFixed(1) + ' млн';
-  if (n >= 1000)    return (n/1000).toFixed(0) + ' тыс';
-  return n;
-}
-
-function colorByPct(p) {
-  if (p >= 90) return { css: 'var(--green)', cls: 'c-green', bg: 'bg-green', quality: 'good' };
-  if (p >= 75) return { css: 'var(--yellow)', cls: 'c-yellow', bg: 'bg-yellow', quality: 'warn' };
-  if (p >= 60) return { css: 'var(--orange)', cls: 'c-orange', bg: 'bg-orange', quality: 'warn' };
-  return { css: 'var(--red)', cls: 'c-red', bg: 'bg-red', quality: 'bad' };
-}
-
-function avgKpiPct(agent) {
-  const kpisNoMoney = agent.kpis.filter(k => !k.isMoney);
-  if (!kpisNoMoney.length) return pct(agent.valFact, agent.valPlan);
-  const sum = kpisNoMoney.reduce((s, k) => s + pct(k.fact, k.plan), 0);
-  return Math.round(sum / kpisNoMoney.length);
-}
-
-// ─── DEPARTMENT TOTALS (общий блок по отделу) ───────────────────────────────
-const DEPT_KPIS = [
-  { name: 'Майонез ТОП 10 + Соус 4', plan: 7528,  fact: 5443, perDay: 261 },
-  { name: '5 Морей АКБ 3 СКЮ',      plan: 370,   fact: 195,  perDay: 22 },
-  { name: 'РОСРЫБСНАБ АКБ',          plan: 446,   fact: 353,  perDay: 12 },
-  { name: 'ЕКО+Бокадо Горох/Куку/Фасоль/Грибы', plan: 2524, fact: 1643, perDay: 110 },
-  { name: 'Оливлайн+Бокадо Оливки',  plan: 993,   fact: 783,  perDay: 26 },
-  { name: 'Доширак АКБ',             plan: 1640,  fact: 1222, perDay: 52 },
-  { name: 'Кетчуп АКБ',              plan: 1160,  fact: 484,  perDay: 85 },
-  { name: 'Олейна СКЮ',              plan: 460,   fact: 271,  perDay: 24 },
-  { name: 'АКБ общий',               plan: 3363,  fact: 2612, perDay: 94 },
+// ═══════════════════════════════════════
+// AGENTS DATA — из таблица_КПИ
+// ═══════════════════════════════════════
+const AGENTS = [
+  {
+    id:'total', name:'ОБЩЕЕ ВЫПОЛНЕНИЕ',
+    team:'Весь отдел · 3 команды · 21 агент',
+    akbPlan:3040, akbFact:2121,
+    valPlan:66500000, valFact:37323703, valProg:87055307,
+    kpis:[
+      {name:'АКБ общий', plan:3040, fact:2121, unit:'точек'},
+      {name:'Соусная группа', plan:9394, fact:4903, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:3692, fact:2478, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:1535, fact:1023, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:66500000, fact:37323703, unit:'₽', isMoney:true},
+    ]
+  },
+  // ── Бобченко ──
+  {
+    id:'bobchenko', name:'Бобченко Ю.В.', team:'ДФЗ-1 · Иванченко С.А.',
+    akbPlan:1132, akbFact:816, valPlan:26710000, valFact:14660216, valProg:34207170,
+    kpis:[
+      {name:'АКБ', plan:1132, fact:816, unit:'точек'},
+      {name:'Соусная группа', plan:4224, fact:2098, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:1597, fact:1158, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:520, fact:357, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:26710000, fact:14660216, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'borisov', name:'Борисов И.В.', team:'ДФЗ-3-02 · Бобченко',
+    akbPlan:156, akbFact:105, valPlan:4010091, valFact:2433309, valProg:5677721,
+    kpis:[
+      {name:'АКБ', plan:156, fact:105, unit:'точек'},
+      {name:'Соусная группа', plan:443, fact:162, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:250, fact:194, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:90, fact:61, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:4010091, fact:2433309, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'borodina', name:'Бородина Д.В.', team:'ДФЗ-3-04 · Бобченко',
+    akbPlan:179, akbFact:131, valPlan:5137525, valFact:2736107, valProg:6384250,
+    kpis:[
+      {name:'АКБ', plan:179, fact:131, unit:'точек'},
+      {name:'Соусная группа', plan:733, fact:355, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:260, fact:165, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:75, fact:49, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:5137525, fact:2736107, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'gryn', name:'Грынь О.С.', team:'ДФЗ-2-07 · Бобченко',
+    akbPlan:142, akbFact:116, valPlan:4107843, valFact:2545367, valProg:5938523,
+    kpis:[
+      {name:'АКБ', plan:142, fact:116, unit:'точек'},
+      {name:'Соусная группа', plan:690, fact:424, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:255, fact:201, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:100, fact:74, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:4107843, fact:2545367, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'karcev', name:'Карцев Н.М.', team:'ДФЗ-1-05 · Бобченко',
+    akbPlan:158, akbFact:115, valPlan:2834926, valFact:1608797, valProg:3753860,
+    kpis:[
+      {name:'АКБ', plan:158, fact:115, unit:'точек'},
+      {name:'Соусная группа', plan:785, fact:327, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:207, fact:130, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:70, fact:43, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2834926, fact:1608797, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'konstantinova', name:'Константинова Ю.В.', team:'ДФЗ-1-02 · Бобченко',
+    akbPlan:158, akbFact:132, valPlan:3640437, valFact:1528419, valProg:3566311,
+    kpis:[
+      {name:'АКБ', plan:158, fact:132, unit:'точек'},
+      {name:'Соусная группа', plan:543, fact:318, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:230, fact:147, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:70, fact:42, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3640437, fact:1528419, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'popovich', name:'Попович А.Р.', team:'ДФЗ-1-03 · Бобченко',
+    akbPlan:138, akbFact:105, valPlan:2688031, valFact:1729332, valProg:4034441,
+    kpis:[
+      {name:'АКБ', plan:138, fact:105, unit:'точек'},
+      {name:'Соусная группа', plan:508, fact:254, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:160, fact:121, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:45, fact:33, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2688031, fact:1729332, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'pustovoy', name:'Пустовой А.А.', team:'ДФЗ-1-07 · Бобченко',
+    akbPlan:149, akbFact:112, valPlan:4291147, valFact:2078885, valProg:4850732,
+    kpis:[
+      {name:'АКБ', plan:149, fact:112, unit:'точек'},
+      {name:'Соусная группа', plan:522, fact:258, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:235, fact:200, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:70, fact:55, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:4291147, fact:2078885, unit:'₽', isMoney:true},
+    ]
+  },
+  // ── Пархоменко ──
+  {
+    id:'parkhomenko', name:'Пархоменко А.В.', team:'ДФЗ-2 · Иванченко С.А.',
+    akbPlan:1123, akbFact:763, valPlan:23470000, valFact:12769268, valProg:29795292,
+    kpis:[
+      {name:'АКБ', plan:1123, fact:763, unit:'точек'},
+      {name:'Соусная группа', plan:3915, fact:2051, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:940, fact:667, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:555, fact:369, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:23470000, fact:12769268, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'agaev', name:'Агаев Р.', team:'ДФЗ-2-01 · Пархоменко',
+    akbPlan:161, akbFact:114, valPlan:4988645, valFact:2437539, valProg:5685924,
+    kpis:[
+      {name:'АКБ', plan:161, fact:114, unit:'точек'},
+      {name:'Соусная группа', plan:784, fact:403, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:250, fact:183, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:95, fact:84, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:4988645, fact:2437539, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'balinov', name:'Балинов М.', team:'ДФЗ-2-02 · Пархоменко',
+    akbPlan:177, akbFact:101, valPlan:2764227, valFact:1651039, valProg:3852424,
+    kpis:[
+      {name:'АКБ', plan:177, fact:101, unit:'точек'},
+      {name:'Соусная группа', plan:546, fact:357, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:267, fact:202, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:95, fact:86, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2764227, fact:1651039, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'zhir', name:'Жир Е.', team:'ДФЗ-2-03 · Пархоменко',
+    akbPlan:140, akbFact:104, valPlan:2996443, valFact:1752722, valProg:4090351,
+    kpis:[
+      {name:'АКБ', plan:140, fact:104, unit:'точек'},
+      {name:'Соусная группа', plan:521, fact:238, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:185, fact:96, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:65, fact:40, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2996443, fact:1752722, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'kostryukova', name:'Кострюкова Ю.', team:'ДФЗ-2-04 · Пархоменко',
+    akbPlan:175, akbFact:93, valPlan:3260602, valFact:1662274, valProg:3878639,
+    kpis:[
+      {name:'АКБ', plan:175, fact:93, unit:'точек'},
+      {name:'Соусная группа', plan:459, fact:149, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:190, fact:129, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:55, fact:21, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3260602, fact:1662274, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'petrov', name:'Петров Д.', team:'ДФЗ-2-05 · Пархоменко',
+    akbPlan:132, akbFact:102, valPlan:3614889, valFact:1891046, valProg:4412440,
+    kpis:[
+      {name:'АКБ', plan:132, fact:102, unit:'точек'},
+      {name:'Соусная группа', plan:470, fact:198, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:192, fact:119, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:80, fact:33, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3614889, fact:1891046, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'sazonov', name:'Сазонов С.', team:'ДФЗ-2-06 · Пархоменко',
+    akbPlan:157, akbFact:107, valPlan:2364648, valFact:1337007, valProg:3119683,
+    kpis:[
+      {name:'АКБ', plan:157, fact:107, unit:'точек'},
+      {name:'Соусная группа', plan:436, fact:323, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:200, fact:131, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:85, fact:55, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2364648, fact:1337007, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'shamrin', name:'Шамрин А.', team:'ДФЗ-2-08 · Пархоменко',
+    akbPlan:181, akbFact:143, valPlan:3480496, valFact:2037641, valProg:4754829,
+    kpis:[
+      {name:'АКБ', plan:181, fact:143, unit:'точек'},
+      {name:'Соусная группа', plan:699, fact:383, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:223, fact:151, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:80, fact:50, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3480496, fact:2037641, unit:'₽', isMoney:true},
+    ]
+  },
+  // ── Дмитриев ──
+  {
+    id:'dmitriev', name:'Дмитриев М.Н.', team:'Бокадо-СВ · Иванченко С.А.',
+    akbPlan:785, akbFact:542, valPlan:16320000, valFact:9894219, valProg:23086511,
+    kpis:[
+      {name:'АКБ', plan:785, fact:542, unit:'точек'},
+      {name:'Соусная группа', plan:1255, fact:754, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:1155, fact:653, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:460, fact:297, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:16320000, fact:9894219, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'dubina', name:'Дубина А.С.', team:'ДФБ-1-01 · Дмитриев',
+    akbPlan:175, akbFact:118, valPlan:3132419, valFact:1913916, valProg:4466472,
+    kpis:[
+      {name:'АКБ', plan:175, fact:118, unit:'точек'},
+      {name:'Соусная группа', plan:350, fact:233, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:0, fact:67, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:45, fact:41, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3132419, fact:1913916, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'librikht', name:'Либрихт С.А.', team:'ДФБ-3-02 · Дмитриев',
+    akbPlan:132, akbFact:88, valPlan:2246946, valFact:1804937, valProg:4212186,
+    kpis:[
+      {name:'АКБ', plan:132, fact:88, unit:'точек'},
+      {name:'Соусная группа', plan:180, fact:114, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:240, fact:131, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:95, fact:87, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2246946, fact:1804937, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'reshetnyak', name:'Решетняк А.С.', team:'ДФБ-1-04 · Дмитриев',
+    akbPlan:140, akbFact:131, valPlan:3595520, valFact:2224467, valProg:5190423,
+    kpis:[
+      {name:'АКБ', plan:140, fact:131, unit:'точек'},
+      {name:'Соусная группа', plan:395, fact:254, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:0, fact:75, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:50, fact:42, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:3595520, fact:2224467, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'savich', name:'Савич С.М.', team:'ДФБ-2-05 · Дмитриев',
+    akbPlan:157, akbFact:102, valPlan:2256969, valFact:1285320, valProg:2998080,
+    kpis:[
+      {name:'АКБ', plan:157, fact:102, unit:'точек'},
+      {name:'Соусная группа', plan:160, fact:67, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:295, fact:174, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:85, fact:51, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2256969, fact:1285320, unit:'₽', isMoney:true},
+    ]
+  },
+  {
+    id:'saprunov', name:'Сапрунов М.М.', team:'ДФБ-2-02 · Дмитриев',
+    akbPlan:181, akbFact:104, valPlan:2969938, valFact:1606791, valProg:3749179,
+    kpis:[
+      {name:'АКБ', plan:181, fact:104, unit:'точек'},
+      {name:'Соусная группа', plan:170, fact:86, unit:'SKU'},
+      {name:'Оливки, Маслины, Ананасы', plan:275, fact:122, unit:'SKU'},
+      {name:'Рыба СКЮ суммарно', plan:65, fact:34, unit:'SKU'},
+      {name:'Общий ВАЛ', plan:2969938, fact:1606791, unit:'₽', isMoney:true},
+    ]
+  },
 ];
 
+// Данные дистрибуции для Безуглого (демо-пример одного агента)
+const DISTRIB = {
+  'borisov': [
+    {cat:'5 Морей(овощи)', goal_akb:30, fact_akb:0, plan_vol:1501, fact_vol:0, fact_vol_pct:0},
+    {cat:'5 Морей(рыба)', goal_akb:30, fact_akb:0, plan_vol:50624, fact_vol:0, fact_vol_pct:0},
+    {cat:'Bocado Горох', goal_akb:60, fact_akb:2.29, plan_vol:29289, fact_vol:738, fact_vol_pct:2.5},
+    {cat:'Bocado Кукуруза', goal_akb:60, fact_akb:6.87, plan_vol:26035, fact_vol:2849, fact_vol_pct:10.9},
+    {cat:'Bocado Фасоль', goal_akb:65, fact_akb:4.58, plan_vol:19526, fact_vol:1570, fact_vol_pct:8.0},
+    {cat:'Bocado Томатная паста', goal_akb:50, fact_akb:4.58, plan_vol:26035, fact_vol:4198, fact_vol_pct:16.1},
+    {cat:'Bocado Соусы', goal_akb:55, fact_akb:6.87, plan_vol:19526, fact_vol:2465, fact_vol_pct:12.6},
+    {cat:'Bocado Маслины', goal_akb:40, fact_akb:1.53, plan_vol:19526, fact_vol:666, fact_vol_pct:3.4},
+    {cat:'Доширак', goal_akb:80, fact_akb:9.16, plan_vol:11065, fact_vol:4117, fact_vol_pct:37.2},
+    {cat:'Доширак (вермишель б.п.)', goal_akb:80, fact_akb:22.9, plan_vol:307360, fact_vol:57161, fact_vol_pct:18.6},
+    {cat:'IBERICA Оливки', goal_akb:80, fact_akb:32.82, plan_vol:143758, fact_vol:99103, fact_vol_pct:68.9},
+    {cat:'Maestro de Olive Оливки', goal_akb:60, fact_akb:22.9, plan_vol:77089, fact_vol:43902, fact_vol_pct:57.0},
+    {cat:'Eko Фасоль', goal_akb:65, fact_akb:25.19, plan_vol:73856, fact_vol:29800, fact_vol_pct:40.3},
+    {cat:'Eko Горох', goal_akb:60, fact_akb:12.98, plan_vol:27988, fact_vol:8624, fact_vol_pct:30.8},
+    {cat:'Кетчуп СЛОБОДА', goal_akb:65, fact_akb:null, plan_vol:0, fact_vol:0, fact_vol_pct:0},
+    {cat:'Майонез СЛОБОДА', goal_akb:75, fact_akb:null, plan_vol:0, fact_vol:0, fact_vol_pct:0},
+    {cat:'Биг Ланч ТМ', goal_akb:50, fact_akb:17.56, plan_vol:108302, fact_vol:49145, fact_vol_pct:45.4},
+    {cat:'Подсолнечное масло СЛОБОДА', goal_akb:75, fact_akb:null, plan_vol:0, fact_vol:0, fact_vol_pct:0},
+    {cat:'Соус СЛОБОДА', goal_akb:70, fact_akb:null, plan_vol:0, fact_vol:0, fact_vol_pct:0},
+    {cat:'Сохраним традиции (рыба)', goal_akb:65, fact_akb:null, plan_vol:0, fact_vol:0, fact_vol_pct:0},
+  ]
+};
+
+// ═══════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════
+const pct = (f,p) => p>0 ? Math.round(f/p*100) : 0;
+const fmtRub = n => n>=1000000 ? (n/1000000).toFixed(1)+'M' : n>=1000 ? Math.round(n/1000)+'К' : String(n);
+const color = p => p>=100?'var(--green)':p>=80?'var(--yellow)':p>=60?'var(--orange)':'var(--red)';
+const bgClass = p => p>=100?'bg-green':p>=80?'bg-yellow':p>=60?'bg-orange':'bg-red';
+const cClass = p => p>=100?'c-green':p>=80?'c-yellow':p>=60?'c-orange':'c-red';
+const ppd = (plan,fact) => CAL.days_left>0 ? Math.round((plan-fact)/CAL.days_left) : 0;
+const pdClass = (plan,fact) => fact>=plan?'done': ppd(plan,fact)>plan/CAL.days_total*1.5?'hot':'';
+
+// ═══════════════════════════════════════
+// RENDER DEPT SUMMARY
+// ═══════════════════════════════════════
 function renderDept() {
-  const wrap = document.getElementById('dept-kpis');
-  wrap.innerHTML = '';
-  DEPT_KPIS.forEach(k => {
-    const p = pct(k.fact, k.plan);
-    const col = colorByPct(p);
-    wrap.innerHTML += `
-      <div class="dept-kpi">
-        <div class="dept-kpi-label">${k.name}</div>
-        <div class="dept-kpi-row">
-          <div class="dept-kpi-pct" style="color:${col.css}">${p}%</div>
-          <div class="dept-kpi-fact">${k.fact}/${k.plan}<br>${k.perDay}/д</div>
-        </div>
-        <div class="dept-kpi-bar">
-          <div class="dept-kpi-bar-fill" style="width:${Math.min(p,100)}%; background:${col.css}"></div>
-        </div>
-      </div>`;
-  });
+  const t = AGENTS[0];
+  const valP = pct(t.valFact, t.valPlan);
+  const kpiItems = t.kpis.slice(0,5).map(k=>{
+    const p = pct(k.fact,k.plan);
+    return `<div class="dept-kpi">
+      <div class="dept-kpi-label">${k.name}</div>
+      <div class="dept-kpi-row">
+        <span class="dept-kpi-pct ${cClass(p)}">${p}%</span>
+        <span class="dept-kpi-fact">${k.isMoney?fmtRub(k.fact):k.fact}/${k.isMoney?fmtRub(k.plan):k.plan}</span>
+      </div>
+      <div class="dept-kpi-bar"><div class="dept-kpi-bar-fill ${bgClass(p)}" style="width:${Math.min(p,100)}%"></div></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('dept-summary').innerHTML = `
+    <div class="dept-summary-row">
+      <div class="dept-headline">
+        <div class="dept-headline-label">Общий вал</div>
+        <div class="dept-headline-val ${cClass(valP)}">${valP}%</div>
+        <div class="dept-headline-sub">${fmtRub(t.valFact)} / ${fmtRub(t.valPlan)}</div>
+      </div>
+      <div class="dept-kpis">${kpiItems}</div>
+    </div>`;
 }
 
-function toggleDept() {
-  const el = document.getElementById('dept-summary');
-  el.classList.toggle('collapsed');
-  const tog = el.querySelector('.dept-summary-toggle');
-  tog.textContent = el.classList.contains('collapsed') ? '▸ развернуть КПИ отдела' : '▾ свернуть отдел';
-}
-
-// ─── SORT ───────────────────────────────────────────────────────────────────
-let currentSort = 'val';
-let currentAgent = null;
-
-function sortAgents(by, btnEl) {
-  currentSort = by;
-  document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
-  if (btnEl) btnEl.classList.add('active');
-  renderList();
-}
-
-// ─── RENDER LIST ────────────────────────────────────────────────────────────
-const TEAMS = [
-  { id: 'bob', label: 'Команда Бобченко · ДФЗ-1', match: a => a.team.includes('Бобченко') || a.team.includes('ДФЗ') },
-  { id: 'park', label: 'Команда Пархоменко · ДФЗ-2', match: a => a.team.includes('Пархоменко') },
-  { id: 'dmi', label: 'Команда Дмитриева · Бокадо', match: a => a.team.includes('Дмитриев') },
+// ═══════════════════════════════════════
+// RENDER AGENT LIST
+// ═══════════════════════════════════════
+const TEAMS_ORDER = [
+  {sep:'ДФЗ-1 · Бобченко', ids:['bobchenko','borisov','borodina','gryn','karcev','konstantinova','popovich','pustovoy']},
+  {sep:'ДФЗ-2 · Пархоменко', ids:['parkhomenko','agaev','balinov','zhir','kostryukova','petrov','sazonov','shamrin']},
+  {sep:'Бокадо-СВ · Дмитриев', ids:['dmitriev','dubina','librikht','reshetnyak','savich','saprunov']},
 ];
 
-function renderList() {
-  const list = document.getElementById('agent-list');
-  list.innerHTML = '';
+let currentSort = 'val';
+let activeId = null;
 
-  // Отделяем "Общее выполнение" от остальных — оно всегда сверху
-  const total = AGENTS.find(a => a.id === 'total');
-  let sorted = AGENTS.filter(a => a.id !== 'total');
-
-  if (currentSort === 'val') {
-    sorted.sort((a,b) => pct(b.valFact, b.valPlan) - pct(a.valFact, a.valPlan));
-  } else if (currentSort === 'akb') {
-    sorted.sort((a,b) => pct(b.akbFact, b.akbPlan) - pct(a.akbFact, a.akbPlan));
-  } else {
-    sorted.sort((a,b) => a.name.localeCompare(b.name));
-  }
-
-  // Общее выполнение всегда первым
-  if (total) sorted.unshift(total);
-
-  sorted.forEach(a => renderAgentItem(list, a));
-}
-
-function renderAgentItem(container, agent) {
-  const vp = pct(agent.valFact, agent.valPlan);
-  const ap = pct(agent.akbFact, agent.akbPlan);
-  const col = colorByPct(vp);
-  const isActive = currentAgent && currentAgent.id === agent.id;
-  const isTotal = agent.id === 'total';
-
-  const div = document.createElement('div');
-  div.className = `agent-item${isActive ? ' active' : ''}${isTotal ? ' total' : ''}`;
-  div.dataset.id = agent.id;
-  // Расчёт прогноза в %
-  const progPct = agent.valProg ? Math.round(agent.valProg / agent.valPlan * 100) : 0;
-  const progCol = colorByPct(progPct);
-
-  div.innerHTML = `
+function agentCard(a) {
+  const vP = pct(a.valFact, a.valPlan);
+  const aP = pct(a.akbFact, a.akbPlan);
+  const progVal = Math.round(a.valProg/a.valPlan*100);
+  const isActive = a.id === activeId;
+  return `<div class="agent-item${a.id==='total'?' total':''}${isActive?' active':''}" data-id="${a.id}" onclick="selectAgent('${a.id}')">
     <div class="ag-row1">
-      <div class="ag-name">${agent.name}</div>
-      <div class="ag-pct" style="color:${isActive ? '#fff' : col.css}">${vp}%</div>
+      <div class="ag-name">${a.name}</div>
+      <div class="ag-pct ${isActive?'':cClass(vP)}">${vP}%</div>
     </div>
-    <div class="ag-bar-wrap">
-      <div class="ag-bar-fill ${col.bg}" style="width:${Math.min(vp,100)}%"></div>
-    </div>
+    <div class="ag-bar-wrap"><div class="ag-bar-fill ${bgClass(vP)}" style="width:${Math.min(vP,100)}%"></div></div>
     <div class="ag-meta">
-      <span>АКБ: ${agent.akbFact}/${agent.akbPlan} (${ap}%)</span>
-      <span>${fmtM(agent.valFact)} / ${fmtM(agent.valPlan)}</span>
+      <span>АКБ: ${a.akbFact}/${a.akbPlan} (${aP}%)</span>
+      <span>${fmtRub(a.valFact)} / ${fmtRub(a.valPlan)}</span>
     </div>
     <div class="ag-meta ag-forecast">
-      <span>Прогноз: <b style="color:${isTotal || isActive ? '#fff' : progCol.css}">${progPct}%</b></span>
-      <span>≈ ${fmtM(agent.valProg)}</span>
-    </div>`;
-  div.onclick = () => selectAgent(agent.id);
-  container.appendChild(div);
+      <span>Прогноз: <b style="color:${isActive?'#fff':color(progVal)}">${progVal}%</b></span>
+      <span>≈ ${fmtRub(a.valProg)}</span>
+    </div>
+  </div>`;
 }
 
-// ─── SELECT AGENT ───────────────────────────────────────────────────────────
-function selectAgent(id) {
-  currentAgent = AGENTS.find(a => a.id === id);
+function sortAgents(by, el) {
+  currentSort = by;
+  document.querySelectorAll('.sort-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
   renderList();
-  renderDetail(currentAgent);
 }
 
-// ─── RENDER DETAIL ──────────────────────────────────────────────────────────
-function renderDistribution(agent) {
-  const data = DISTRIBUTION[agent.id];
-  if (!data) {
-    return ''; // нет данных по дистрибуции — пропускаем блок
+function renderList() {
+  const total = AGENTS.find(a=>a.id==='total');
+  let html = agentCard(total);
+
+  if (currentSort === 'name') {
+    TEAMS_ORDER.forEach(team => {
+      html += `<div class="team-sep">${team.sep}</div>`;
+      team.ids.forEach(id => {
+        const a = AGENTS.find(x=>x.id===id);
+        if(a) html += agentCard(a);
+      });
+    });
+  } else {
+    const rest = AGENTS.filter(a=>a.id!=='total');
+    rest.sort((a,b)=>{
+      if(currentSort==='val') return pct(b.valFact,b.valPlan)-pct(a.valFact,a.valPlan);
+      if(currentSort==='akb') return pct(b.akbFact,b.akbPlan)-pct(a.akbFact,a.akbPlan);
+      return 0;
+    });
+    rest.forEach(a => html += agentCard(a));
   }
 
-  const WORK_WEEK = 5; // рабочих дней в неделе для расчёта
-  const isTotal = agent.id === 'total';
+  document.getElementById('agent-list').innerHTML = html;
+}
 
-  function row(item, i, isWorst) {
-    const ratio = item.target ? (item.actual / item.target) : 0;
-    const col = ratio >= 1 ? 'var(--green)' : ratio >= 0.75 ? 'var(--yellow)' : ratio >= 0.5 ? 'var(--orange)' : 'var(--red)';
-    const w = Math.min(item.actual, 100);
-    const targetPos = Math.min(item.target, 100);
+// ═══════════════════════════════════════
+// SELECT AGENT — detail panel
+// ═══════════════════════════════════════
+function selectAgent(id) {
+  activeId = id;
+  renderList();
 
-    // План на неделю — для блока worst:
-    // Разрыв в пп / DAYS_LEFT * WORK_WEEK = сколько процентных пунктов в неделю нужно прибавлять
-    const gap = Math.max(0, item.target - item.actual);
-    const ppPerWeek = gap > 0 ? (gap / DAYS_LEFT * WORK_WEEK) : 0;
-    const weekPlanLabel = isWorst && gap > 0
-      ? `+${ppPerWeek.toFixed(1)}пп/нед`
-      : '';
+  const a = AGENTS.find(x=>x.id===id);
+  if(!a) return;
 
-    const commentBlock = item.comment
-      ? `<div class="dist-comment">${item.comment}</div>`
-      : '';
+  const vP = pct(a.valFact, a.valPlan);
+  const aP = pct(a.akbFact, a.akbPlan);
+  const progVal = Math.round(a.valProg/a.valPlan*100);
 
-    return `
-      <div class="dist-row${isWorst ? ' worst-row' : ''}" style="animation-delay:${i * 0.05}s">
-        <div class="dist-cat">${item.cat}</div>
-        <div class="dist-actual" style="color:${col}">${item.actual}%</div>
-        <div class="dist-target">
-          цель ${item.target}%
-          ${weekPlanLabel ? `<div class="dist-weekplan">${weekPlanLabel}</div>` : ''}
-        </div>
-        <div class="dist-bar">
-          <div class="dist-bar-fill" style="width:${w}%; background:${col}"></div>
-          <div class="dist-bar-target-line" style="left:${targetPos}%"></div>
-        </div>
-        ${commentBlock}
-      </div>`;
-  }
-
-  const bestRows = data.best.map((it, i) => row(it, i, false)).join('');
-  const worstRows = data.worst.map((it, i) => row(it, i, true)).join('');
-
-  const titleText = isTotal
-    ? 'Дистрибуция отдела · системный анализ по всем командам'
-    : 'Дистрибуция · покрытие категорий (последний срез)';
-
-  const bestTitle = isTotal ? '✓ Сильные позиции отдела' : '✓ ТОП 5 — лучшее покрытие';
-  const worstTitle = isTotal
-    ? `▼ Системные проблемы (+пп/нед = темп подтяжки)`
-    : `▼ ТОП 10 — подтянуть (план на неделю)`;
-
-  return `
-    <div class="section">
-      <div class="section-title">${titleText}</div>
-      <div class="dist-grid">
-        <div>
-          <div class="dist-col-title best">${bestTitle}</div>
-          ${bestRows}
-        </div>
-        <div>
-          <div class="dist-col-title worst">${worstTitle}</div>
-          ${worstRows}
-        </div>
-      </div>
+  // KPI rows
+  let kpiHtml = '';
+  a.kpis.forEach((k,i)=>{
+    const p = pct(k.fact,k.plan);
+    const pd = ppd(k.plan, k.fact);
+    const pdC = pdClass(k.plan, k.fact);
+    const pdLabel = k.isMoney ? fmtRub(Math.abs(pd))+'/д' : Math.abs(pd)+'/д';
+    kpiHtml += `<div class="kpi-row" style="animation-delay:${i*0.05}s">
+      <div class="kpi-label">${k.name}</div>
+      <div class="kpi-bar-track"><div class="kpi-bar-fill ${bgClass(p)}" style="width:${Math.min(p,100)}%"></div></div>
+      <div class="kpi-pct ${cClass(p)}">${p}%</div>
+      <div class="kpi-fact">${k.isMoney?fmtRub(k.fact):k.fact} ${k.unit}</div>
+      <div class="kpi-plan">из ${k.isMoney?fmtRub(k.plan):k.plan}</div>
+      <div class="kpi-perday ${pdC}">${pd<0?'✓ план':pdLabel}</div>
     </div>`;
-}
-
-function renderDetail(agent) {
-  const panel = document.getElementById('detail-panel');
-  const vp = pct(agent.valFact, agent.valPlan);
-  const ap = pct(agent.akbFact, agent.akbPlan);
-  const progPct = Math.round(agent.valProg / agent.valPlan * 100);
-  const vcol = colorByPct(vp);
-  const acol = colorByPct(ap);
-
-  // Build KPI rows HTML
-  let kpiRowsHtml = '';
-  agent.kpis.forEach((k, i) => {
-    const p = pct(k.fact, k.plan);
-    const col = colorByPct(p);
-    const barW = Math.min(p, 120);
-    const factLabel = k.isMoney ? fmtM(k.fact) : k.fact;
-    const planLabel = k.isMoney ? fmtM(k.plan) : k.plan;
-    const overflowW = p > 100 ? `width:100%;` : `width:${barW}%;`;
-    const overflowStyle = p > 100 ? `background: repeating-linear-gradient(45deg, ${col.css}, ${col.css} 4px, transparent 4px, transparent 8px);` : `background:${col.css};`;
-
-    // План на день
-    const perDay = planPerDay(k.plan, k.fact);
-    const perDayLabel = fmtPerDay(perDay, k.isMoney);
-    let perDayClass = 'kpi-perday';
-    if (perDay <= 0) perDayClass += ' done';
-    else {
-      // Если для выполнения нужно делать больше, чем средний дневной темп прошлого периода — это "горячо"
-      const avgDailyPast = k.fact / DAYS_PASSED;
-      if (perDay > avgDailyPast * 1.5) perDayClass += ' hot';
-    }
-
-    kpiRowsHtml += `
-      <div class="kpi-row" style="animation-delay:${i * 0.06}s">
-        <div class="kpi-label">${k.name}</div>
-        <div class="kpi-bar-track">
-          <div class="kpi-bar-fill" style="${overflowW} ${overflowStyle}"></div>
-          <div class="kpi-bar-target" style="left:${Math.min(80/120*100,66.6)}%"></div>
-        </div>
-        <div class="kpi-pct" style="color:${col.css}">${p}%</div>
-        <div class="kpi-fact">${factLabel}</div>
-        <div class="kpi-plan">${planLabel} пл</div>
-        <div class="${perDayClass}">${perDayLabel}${k.isMoney || perDay <= 0 ? '' : '/д'}</div>
-      </div>`;
   });
 
-  // Summary mini KPIs
-  const kpisNoM = agent.kpis.filter(k => !k.isMoney);
-  const above80 = kpisNoM.filter(k => pct(k.fact, k.plan) >= 80).length;
-  const below60 = kpisNoM.filter(k => pct(k.fact, k.plan) < 60).length;
-  const avgP = Math.round(kpisNoM.reduce((s,k) => s + pct(k.fact,k.plan), 0) / (kpisNoM.length||1));
+  // Дистрибуция
+  const distRows = DISTRIB[id] || [];
+  let weakVolHtml = '', weakAkbHtml = '';
 
-  panel.innerHTML = `
+  if (distRows.length > 0) {
+    // Слабые по объёму — топ-10 по наименьшему fact_vol_pct где plan_vol > 0
+    const byVol = [...distRows].filter(r=>r.plan_vol>0).sort((a,b)=>a.fact_vol_pct-b.fact_vol_pct).slice(0,10);
+    byVol.forEach((r,i)=>{
+      const p = Math.round(r.fact_vol_pct);
+      weakVolHtml += `<div class="dist-row" style="animation-delay:${i*0.04}s">
+        <div class="dist-cat">${r.cat}</div>
+        <div class="dist-actual ${cClass(p)}">${p}%</div>
+        <div class="dist-target">${fmtRub(r.fact_vol)} / ${fmtRub(r.plan_vol)}</div>
+        <div class="dist-bar"><div class="dist-bar-fill ${bgClass(p)}" style="width:${Math.min(p,100)}%"></div></div>
+      </div>`;
+    });
+
+    // Слабые по АКБ — топ-10 по наименьшему fact_akb где goal_akb заполнен
+    const byAkb = [...distRows].filter(r=>r.goal_akb&&r.fact_akb!==null).sort((a,b)=>a.fact_akb-b.fact_akb).slice(0,10);
+    byAkb.forEach((r,i)=>{
+      const p = Math.round(r.fact_akb/r.goal_akb*100);
+      weakAkbHtml += `<div class="dist-row" style="animation-delay:${i*0.04}s">
+        <div class="dist-cat">${r.cat}</div>
+        <div class="dist-actual ${cClass(p)}">${r.fact_akb.toFixed(1)}%</div>
+        <div class="dist-target">цель ${r.goal_akb}%</div>
+        <div class="dist-bar"><div class="dist-bar-fill ${bgClass(p)}" style="width:${Math.min(p,100)}%"></div></div>
+      </div>`;
+    });
+  } else {
+    weakVolHtml = `<div style="font-family:var(--fm);font-size:11px;color:var(--ink3);padding:12px 10px;letter-spacing:1px">Данные дистрибуции будут добавлены</div>`;
+    weakAkbHtml = weakVolHtml;
+  }
+
+  const distSection = `
+    <div class="section">
+      <div class="section-title">Дистрибуция · период ${CAL.distrib_period}</div>
+      <div class="dist-grid">
+        <div>
+          <div class="dist-col-title worst-vol">▼ Слабые по объёму (руб)</div>
+          ${weakVolHtml}
+        </div>
+        <div>
+          <div class="dist-col-title worst-akb">▼ Слабые по АКБ (покрытие)</div>
+          ${weakAkbHtml}
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('panel-right').innerHTML = `
     <div class="detail-header">
       <div>
-        <div class="detail-name">${agent.name}</div>
-        <div class="detail-team">${agent.team}</div>
+        <div class="detail-name">${a.name}</div>
+        <div class="detail-team">${a.team}</div>
       </div>
       <div class="detail-score">
-        <div class="detail-score-val" style="color:${vcol.css}">${vp}%</div>
-        <div class="detail-score-label">Выполнение вала</div>
+        <div class="detail-score-val ${cClass(vP)}">${vP}%</div>
+        <div class="detail-score-label">ВАЛ</div>
       </div>
     </div>
 
     <div class="forecast-banner">
       <div class="fc-card">
-        <div class="fc-card-label">АКБ факт / план</div>
-        <div class="fc-card-val" style="color:${acol.css}">${agent.akbFact} / ${agent.akbPlan}</div>
-        <div class="fc-card-sub">${ap}% выполнения</div>
+        <div class="fc-card-label">Прогноз</div>
+        <div class="fc-card-val ${cClass(progVal)}">${progVal}%</div>
+        <div class="fc-card-sub">≈ ${fmtRub(a.valProg)}</div>
       </div>
       <div class="fc-card">
-        <div class="fc-card-label">Вал факт</div>
-        <div class="fc-card-val">${fmtM(agent.valFact)}</div>
-        <div class="fc-card-sub">из ${fmtM(agent.valPlan)}</div>
-      </div>
-      <div class="fc-card" style="border-color:#e8d49a; background:#fffbf0;">
-        <div class="fc-card-label" style="color:#8a6d10">Нужно вала в день</div>
-        <div class="fc-card-val" style="color:#8a6d10">${fmtM(planPerDay(agent.valPlan, agent.valFact))}</div>
-        <div class="fc-card-sub">чтобы выполнить план за ${DAYS_LEFT} дней</div>
+        <div class="fc-card-label">АКБ</div>
+        <div class="fc-card-val ${cClass(aP)}">${aP}%</div>
+        <div class="fc-card-sub">${a.akbFact} / ${a.akbPlan} точек</div>
       </div>
       <div class="fc-card">
-        <div class="fc-card-label">КПИ задач ≥ 80%</div>
-        <div class="fc-card-val" style="color:${above80 >= kpisNoM.length*0.7 ? 'var(--green)' : 'var(--orange)'}">${above80} / ${kpisNoM.length}</div>
-        <div class="fc-card-sub">Ср. по КПИ: ${avgP}%</div>
+        <div class="fc-card-label">П/день (вал)</div>
+        <div class="fc-card-val" style="color:var(--orange)">${fmtRub(ppd(a.valPlan,a.valFact))}</div>
+        <div class="fc-card-sub">осталось ${CAL.days_left} дней</div>
+      </div>
+      <div class="fc-card">
+        <div class="fc-card-label">Период</div>
+        <div class="fc-card-val" style="color:var(--ink2);font-size:14px">${CAL.days_passed} из ${CAL.days_total}</div>
+        <div class="fc-card-sub">${CAL.progress_pct}% месяца · ${CAL.date}</div>
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">Детализация КПИ задач · план/день рассчитан на ${DAYS_LEFT} оставшихся дней</div>
-      <div style="display:grid; grid-template-columns: 180px 1fr 64px 80px 80px 90px; gap:12px; padding: 0 0 6px; font-family:var(--fm); font-size:9px; color:var(--ink3); letter-spacing:2px; text-transform:uppercase; border-bottom:2px solid var(--ink); margin-bottom:4px;">
-        <div>Задача</div>
+      <div class="section-title">КПИ задачи</div>
+      <div style="display:grid;grid-template-columns:200px 1fr 64px 80px 80px 90px;gap:12px;padding:6px 0;border-bottom:1px solid var(--border)">
+        <div style="font-family:var(--fm);font-size:9px;color:var(--ink3);letter-spacing:1px">ПОКАЗАТЕЛЬ</div>
         <div></div>
-        <div style="text-align:right">%</div>
-        <div style="text-align:right">Факт</div>
-        <div style="text-align:right">План</div>
-        <div style="text-align:right">План/день</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--ink3);text-align:right">%</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--ink3);text-align:right">ФАКТ</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--ink3);text-align:right">ПЛАН</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--ink3);text-align:right">П/ДЕНЬ</div>
       </div>
-      ${kpiRowsHtml}
+      ${kpiHtml}
     </div>
 
-    ${renderDistribution(agent)}
-
-    <div class="section">
-      <div class="section-title">Выполнение вала · детально</div>
-      <div class="gauge-row">
-        <div class="gauge-header">
-          <div class="gauge-name">Выполнено на сегодня</div>
-          <div class="gauge-nums">${fmtM(agent.valFact)} из ${fmtM(agent.valPlan)}</div>
-        </div>
-        <div class="gauge-track">
-          <div class="gauge-fill ${vcol.bg}" style="width:${Math.min(vp,100)}%"></div>
-        </div>
-        <div class="gauge-pct-label" style="color:${vcol.css}">${vp}%</div>
-      </div>
-      <div class="gauge-row">
-        <div class="gauge-header">
-          <div class="gauge-name">Прогноз к концу месяца</div>
-          <div class="gauge-nums">${fmtM(agent.valProg)} из ${fmtM(agent.valPlan)}</div>
-        </div>
-        <div class="gauge-track">
-          <div class="gauge-fill" style="width:${Math.min(progPct,100)}%; background:${colorByPct(progPct).css};"></div>
-        </div>
-        <div class="gauge-pct-label" style="color:${colorByPct(progPct).css}">${progPct}%</div>
-      </div>
-    </div>`;
+    ${distSection}
+  `;
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+renderDept();
 renderList();
 </script>
 </body>
